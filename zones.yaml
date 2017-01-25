@@ -1,0 +1,13 @@
+- name: Home
+  latitude: 45.493400
+  longitude: 11.106900
+  radius: 100
+  icon: mdi:people
+- name: Galileo
+  latitude: 45.431979
+  longitude: 10.969259
+  radius: 100
+- name: Uteco
+  latitude: 45.422960
+  longitude: 11.149121
+  radius: 300

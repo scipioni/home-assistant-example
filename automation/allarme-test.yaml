@@ -1,0 +1,10 @@
+alias: 'test allarme'
+hide_entity: true
+trigger:
+  platform: state
+  entity_id: input_boolean.allarme_test
+  from: 'off'
+  to: 'on'
+action:
+  - service: homeassistant.turn_off
+    entity_id: input_boolean.allarme_test

@@ -1,0 +1,9 @@
+alias: Restart HASS
+hide_entity: true
+trigger:
+  - platform: state
+    entity_id: input_boolean.restart_hass
+    from: 'off'
+    to: 'on'
+action:
+  - service: homeassistant.restart

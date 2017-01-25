@@ -1,0 +1,38 @@
+alias: allarme scattato
+initial_state: true
+hide_entity: true
+trigger:
+  - platform: numeric_state
+    entity_id: sensor.fibaro_system_fgms001_motion_sensor_burglar_2_10
+    above: 5
+  - platform: state
+    entity_id: input_boolean.allarme_test
+    to: 'on'
+  - platform: state
+    entity_id: input_boolean.motion_detected
+    to: 'on'
+condition:
+  condition: state
+  entity_id: input_boolean.allarme_armato
+  state: 'on'
+action:
+  - service: homeassistant.turn_on
+    entity_id: input_boolean.allarme_scattato
+  #- service: shell_command.find_lastest_snapshot
+  #- delay: 0:2
+  - service: notify.telegram
+    data:
+      title: ALLARME
+      message: "ALLARME !!!! camera={{states.input_boolean.motion_detected}} volumetrico={{states.sensor.fibaro_system_fgms001_motion_sensor_burglar_2_10.state}}"
+      data:
+        photo:
+          - file: /media/usb0/latest.jpg
+            caption: Camera C1
+  - service: homeassistant.turn_on
+    entity_id: switch.vision_zm1601eu5_battery_operated_siren_switch_9_0
+
+
+  #- service: notify.syslog
+  #  data_template:
+  #    title: "Allarme"
+  #    message: "stato={{states.sensor.fibaro_system_fgms001_motion_sensor_burglar_4_10.state}}"

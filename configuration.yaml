@@ -1,0 +1,97 @@
+homeassistant:
+  name: Home
+  latitude: 45.493400
+  longitude: 11.106900
+  elevation: 430
+  unit_system: metric
+  time_zone: Europe/Rome
+  customize: !include_dir_merge_named customizations
+
+frontend:
+
+http:
+  api_password: !secret http_password
+
+updater:
+
+discovery:
+
+conversation:
+
+history:
+
+recorder:
+  purge_days: 2
+
+logbook:
+
+sun:
+
+mqtt:
+  broker: 127.0.0.1
+  port: 1883
+  client_id: home-assistant-1
+  keepalive: 60
+  username: pi
+  password: !secret mqtt_password
+  protocol: 3.1
+
+zwave:
+  usb_path: /dev/ttyACM0
+  config_path: /home/hass/lib/lib/python3.4/site-packages/libopenzwave-0.3.1-py3.4-linux-armv7l.egg/config
+
+logger:
+  default: warning
+  logs:
+    homeassistant.components.device_tracker: debug
+    homeassistant.components.device_tracker.mqtt: debug
+
+device_tracker: !include device_trackers.yaml
+
+notify: !include notify.yaml
+
+media_player: !include media_players.yaml
+
+sensor: !include_dir_merge_list sensors
+
+zone: !include zones.yaml
+
+automation: !include_dir_list automation
+
+group: !include groups.yaml
+
+input_boolean: !include input_boolean.yaml
+
+input_select: !include input_select.yaml
+
+shell_command: !include_dir_merge_named shell_command
+
+
+###########################################
+
+panel_iframe:
+  audio:
+    title: Musica
+    icon: mdi:music-box-outline
+    url: http://pi.home:6680/moped
+
+
+weblink:
+  entities:
+    - name: Musica
+      url: http://pi.home:6680/musicbox_webclient
+    - name: Grafana
+      url: http://pi.csgalileo.org/grafana/
+    - name: Cloud
+      url: http://pi.csgalileo.org/cloud/
+
+camera:
+  - platform: foscam
+    ip: 192.168.2.14
+    username: foscam
+    password: !secret foscam_c1
+
+graphite:
+  host: 127.0.0.1
+  port: 2003
+

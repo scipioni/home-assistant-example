@@ -1,0 +1,15 @@
+alias: 'notifica allarme armato'
+hide_entity: true
+trigger:
+  platform: state
+  entity_id: input_boolean.allarme_armato
+  to: 'on'
+  for:
+    seconds: 5
+    minutes: 0
+action:
+  - service: notify.telegram
+    data:
+      message: 'Allarme armato.'
+  - service: homeassistant.turn_off
+    entity_id: input_boolean.allarme_scattato

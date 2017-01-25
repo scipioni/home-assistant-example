@@ -1,0 +1,13 @@
+alias: attiva suono sulla sirena
+hide_entity: true
+trigger:
+  - platform: state
+    entity_id: input_select.sirena
+    to: 'suono e luce'
+action:
+  service: zwave.set_config_parameter
+  data_template: {
+    "node_id": 9,
+    "parameter": 1,
+    "value": 0
+    }

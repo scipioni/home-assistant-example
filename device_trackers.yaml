@@ -1,0 +1,7 @@
+- platform: ping
+  count: 2
+  hosts:
+    scipio: 192.168.2.10
+    simo: 192.168.2.25
+
+

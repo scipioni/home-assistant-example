@@ -1,0 +1,22 @@
+allarme_armato:
+  name: Allarme ARMATO
+  initial: off
+  icon: mdi:alarm
+
+allarme_scattato:
+  name: Allarme scattato
+  initial: off
+  icon: mdi:alert
+
+allarme_test:
+  name: Test allarme
+  initial: off
+  icon: mdi:alarm-plus
+
+motion_detected:
+  name: Motion rilevato
+  initial: off
+  icon: mdi:run
+
+restart_hass:
+  name: restart HASS

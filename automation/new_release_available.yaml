@@ -1,0 +1,9 @@
+alias: 'update available'
+hide_entity: true
+trigger:
+  - platform: state
+    entity_id: updater.updater
+action:
+  service: notify.telegram
+  data:
+    message: 'There is a new Home Assistant release available.'

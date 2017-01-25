@@ -1,0 +1,8 @@
+sirena:
+  name: modalità sirena
+  options:
+   - suono e luce
+   - solo luce
+  initial: suono e luce
+  icon: mdi:alarm
+

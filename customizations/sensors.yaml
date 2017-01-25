@@ -1,0 +1,73 @@
+sensor.fibaro_system_fgms001_motion_sensor_burglar_2_10:
+  friendly_name: 'motion esterno'
+
+sensor.fibaro_system_fgms001zw5_motion_sensor_temperature_2_1:
+  friendly_name: 'temperatura esterna'
+
+sensor.fibaro_system_fgms001zw5_motion_sensor_luminance_2_3:
+  friendly_name: 'luminosità esterna'
+
+sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity_2_25:
+  friendly_name: 'attività sismica'
+
+sensor.fibaro_system_fgms001_motion_sensor_burglar_7_10:
+  friendly_name: 'motion camera'
+
+sensor.fibaro_system_fgms001zw5_motion_sensor_temperature_7_1:
+  friendly_name: 'temperatura camera'
+
+sensor.fibaro_system_fgms001zw5_motion_sensor_luminance_7_3:
+  friendly_name: 'luminosità camera'
+
+#switch.fibaro_system_fgwpe_wall_plug_switch_5_0:
+#  friendly_name: frigorifero
+#  icon: mdi:led-on
+
+#sensor.fibaro_system_fgwpe_wall_plug_energy_5_0:
+#  friendly_name: consumo totale frigorifero
+
+#sensor.fibaro_system_fgwpe_wall_plug_power_5_4:
+#  friendly_name: consumo istantaneo frigorifero
+
+switch.aeotec_zw096_smart_switch_6_switch_3_0:
+  friendly_name: presa 1
+  sensor_class: 'None'
+
+sensor.aeotec_zw096_smart_switch_6_power_3_8:
+  friendly_name: consumo istantaneo 1
+
+sensor.aeotec_zw096_smart_switch_6_energy_3_0:
+  friendly_name: energia 1
+
+sensor.speedtest_download:
+  icon: mdi:download
+  friendly_name: Download
+
+sensor.speedtest_upload:
+  icon: mdi:upload
+  friendly_name: Upload
+
+sensor.speedtest_ping:
+  icon: mdi:timer
+  friendly_name: Ping
+
+sun.sun:
+  icon: mdi:weather-sunny
+
+sensor.aeotec_zw100_multisensor_6_relative_humidity_6_5:
+  friendly_name: 'umidità soggiorno'
+
+sensor.aeotec_zw100_multisensor_6_burglar_6_10:
+  friendly_name: 'motion soggiorno'
+
+sensor.aeotec_zw100_multisensor_6_ultraviolet_6_27:
+  friendly_name: 'ultravioletti'
+
+sensor.aeotec_zw100_multisensor_6_luminance_6_3:
+  friendly_name: 'luce soggiorno'
+
+sensor.aeotec_zw100_multisensor_6_temperature_6_1:
+  friendly_name: 'temperatura soggiorno'
+
+switch.vision_zm1601eu5_battery_operated_siren_switch_9_0:
+  friendly_name: 'Sirena'

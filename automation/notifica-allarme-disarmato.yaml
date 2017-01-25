@@ -1,0 +1,13 @@
+alias: 'notifica allarme armato'
+hide_entity: true
+trigger:
+  platform: state
+  entity_id: input_boolean.allarme_armato
+  to: 'off'
+  for:
+    seconds: 5
+    minutes: 0
+action:
+  - service: notify.telegram
+    data:
+      message: 'Allarme disarmato.'

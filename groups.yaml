@@ -1,0 +1,70 @@
+#default_view:
+#  view: yes
+#  entities:
+#    - group.meteo
+
+soggiorno:
+  name: Soggiorno
+  entities:
+    - sensor.aeotec_zw100_multisensor_6_temperature_6_1
+    - sensor.aeotec_zw100_multisensor_6_relative_humidity_6_5
+    - sensor.aeotec_zw100_multisensor_6_burglar_6_10
+    - sensor.aeotec_zw100_multisensor_6_ultraviolet_6_27
+    - sensor.aeotec_zw100_multisensor_6_luminance_6_3
+    - camera.soggiorno
+    - media_player.lg_tv_remote
+    - media_player.shield
+
+camere:
+  name: Camere
+  entities:
+    - sensor.fibaro_system_fgms001_motion_sensor_burglar_7_10
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature_7_1
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance_7_3
+
+esterno:
+  name: Esterno
+  entities:
+    - sensor.fibaro_system_fgms001_motion_sensor_burglar_2_10
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature_2_1
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance_2_3
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity_2_25
+
+allarme:
+  name: Allarme
+  entities:
+    - input_boolean.allarme_armato
+    - input_select.sirena
+    - switch.vision_zm1601eu5_battery_operated_siren_switch_9_0
+    - automation.wifi_arma_automaticamente_allarme
+    - input_boolean.allarme_scattato
+    - input_boolean.allarme_test
+    - input_boolean.motion_detected
+
+meteo:
+  name: Meteo
+  entities:
+    - sun.sun
+    - sensor.yr_symbol
+    - sensor.yweather_condition
+    - sensor.yweather_temperature_max
+    - sensor.yweather_temperature_min
+
+famiglia:
+  name: Famiglia
+  entities:
+    - device_tracker.scipio
+    - device_tracker.simo
+
+admin:
+  name: Admin
+  view: yes
+  entities:
+    - input_boolean.restart_hass
+
+internet:
+  name: Internet
+  entities:
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    - sensor.speedtest_ping

@@ -1,0 +1,15 @@
+simo:
+  hide_if_away: false
+  mac:
+  name: simo
+  picture: /local/simo.png
+  track: true
+  vendor:
+
+scipio:
+  hide_if_away: false
+  mac:
+  name: scipio
+  picture: /local/scipio.png
+  track: true
+  vendor:

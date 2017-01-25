@@ -1,0 +1,7 @@
+- platform: yweather
+  woeid: 725791 # Verona
+  forecast: 1 # da oggi per 3 giorni
+  monitored_conditions:
+    - weather
+    - temp_min
+    - temp_max

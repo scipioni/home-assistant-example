@@ -1,0 +1,7 @@
+- name: telegram
+  platform: telegram
+  api_key: !secret telegram_token
+  chat_id: !secret telegram_chat
+- name: syslog
+  platform: syslog
+

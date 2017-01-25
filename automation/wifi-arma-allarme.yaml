@@ -1,0 +1,14 @@
+alias: 'wifi arma automaticamente allarme'
+hide_entity: false
+trigger:
+  platform: state
+  entity_id: group.famiglia
+  from: 'home'
+  to: 'not_home'
+  for:
+    seconds: 5
+    minutes: 0
+action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.allarme_armato
