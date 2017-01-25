@@ -7,7 +7,6 @@ home-assistant real configuration
 ![Alt text](http://g.gravizo.com/g?
   digraph G {
     aize ="5,5";
-    
     camera -> ftp [label="on motion"]
     ftp -> incron -> onmotion
     ftp [label="ftp server"]
