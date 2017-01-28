@@ -1,0 +1,11 @@
+alias: 'telegram bot'
+hide_entity: true
+trigger:
+  platform: state
+  entity_id: telegram_bot.command
+  to: '/ping'
+action:
+  - service: notify.telegram
+    data:
+      message: 'pong'
+

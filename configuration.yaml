@@ -43,8 +43,10 @@ zwave:
 logger:
   default: warning
   logs:
-    homeassistant.components.device_tracker: debug
-    homeassistant.components.device_tracker.mqtt: debug
+#    homeassistant.components.device_tracker: debug
+#    homeassistant.components.device_tracker.mqtt: debug
+    custom_components.telegram_bot: debug
+    homeassistant.components.http: debug
 
 device_tracker: !include device_trackers.yaml
 
@@ -95,3 +97,8 @@ graphite:
   host: 127.0.0.1
   port: 2003
 
+telegram_bot:
+  api_key: !secret telegram_token
+  api_url: !secret telegram_webhook
+  user_id:
+    scipio: 73496590

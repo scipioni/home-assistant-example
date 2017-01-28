@@ -1,0 +1,16 @@
+alias: 'telegram bot start'
+hide_entity: true
+trigger:
+  platform: state
+  entity_id: telegram_bot.command
+  to: '/start'
+action:
+  - service: notify.telegram
+    data:
+      message: 'commands'
+      data:
+        keyboard:
+          - '/ping, /alarm'
+          - '/siren'
+
+
