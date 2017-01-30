@@ -1,17 +1,16 @@
 """
-Allows utilizing telegram bot.
+Allows utilizing telegram webhooks.
+
+See https://core.telegram.org/bots/webhooks for details
+ about webhooks.
 
 """
-
 import asyncio
 import logging
-import os
 
-import requests
 import voluptuous as vol
 
-from homeassistant.const import CONF_ACCESS_TOKEN, HTTP_BAD_REQUEST
-from homeassistant.config import load_yaml_config_file
+from homeassistant.const import HTTP_BAD_REQUEST
 import homeassistant.helpers.config_validation as cv
 from homeassistant.components.http import HomeAssistantView
 from homeassistant.const import CONF_API_KEY
@@ -36,9 +35,10 @@ CONFIG_SCHEMA = vol.Schema({
 
 
 def setup(hass, config):
-    """Setup the telegram_webhooks component
-        - register webhook if API_KEY and API_URL specified
-        - register /api/telegram_webhooks as web service for telegram bot
+    """Setup the telegram_webhooks component.
+
+    register webhook if API_KEY and API_URL specified
+    register /api/telegram_webhooks as web service for telegram bot
     """
     import telegram
 
@@ -66,8 +66,10 @@ class TelegrambotPushReceiver(HomeAssistantView):
     url = "/api/telegram_webhooks"
     name = "telegram_webhooks"
 
-    def __init__(self, user_id):
-        self.users = dict([(user_id, dev_id) for (dev_id, user_id) in user_id.items()])
+    def __init__(self, user_id_array):
+        """Initialize users allowed to send messages to bot."""
+        self.users = dict([(user_id, dev_id)
+                           for (dev_id, user_id) in user_id_array.items()])
         _LOGGER.debug("users allowed: %s", self.users)
 
     @asyncio.coroutine
@@ -76,22 +78,25 @@ class TelegrambotPushReceiver(HomeAssistantView):
         try:
             data = yield from request.json()
             data = data['message']
-        except ValueError:
+        except (ValueError, IndexError):
             return self.json_message('Invalid JSON', HTTP_BAD_REQUEST)
 
         try:
             assert data['from']['id'] in self.users
-        except:
-            _LOGGER.warn("User not allowed")
+        except (AssertionError, IndexError):
+            _LOGGER.warning("User not allowed")
             return self.json_message('Invalid user', HTTP_BAD_REQUEST)
 
         _LOGGER.debug("Received telegram data: %s", data)
         try:
             assert data['text'][0] == '/'
-        except:
-            _LOGGER.warn('no command')
+        except (AssertionError, IndexError):
+            _LOGGER.warning('no command')
             return self.json({})
 
-        request.app['hass'].states.async_set('{}.command'.format(DOMAIN), data['text'], force_update=True)
-        request.app['hass'].states.async_set('{}.user_id'.format(DOMAIN), data['from']['id'], force_update=True)
+        request.app['hass'].states.async_set('{}.command'.format(DOMAIN),
+                                             data['text'], force_update=True)
+        request.app['hass'].states.async_set('{}.user_id'.format(DOMAIN),
+                                             data['from']['id'],
+                                             force_update=True)
         return self.json({})

@@ -19,3 +19,57 @@ home-assistant real configuration
     user [shape=box,style=filled,color=".4 .5 1.0"]
   }
 )
+
+## telegram webhooks
+
+```yaml
+# Example configuration.yaml entry
+telegram_webhooks:
+  api_key: ABCDEFGHJKLMNOPQRSTUVXYZ
+  api_url: https://<PUBLIC_HOST>/api/telegram_webhooks
+  user_id:
+    user1: USER_ID
+    user2: USER_ID
+```
+
+Configuration variables:
+
+- **user_id** array (Required): List of users allowed to send messages to
+ webhooks (formt name: USER_ID).
+- **api_key** (*Optional*): The API token of yout bot. Setting the optional
+ parameter `api_key` (with api_url) make an automatic registration of webhook
+in telgram bot.
+- **api_url** (*Optional*): The API token of your bot
+ (see api_key for automatic update of webhooks url)
+
+
+```yaml
+
+alias: 'telegram bot ping pong to check presence of bot'
+hide_entity: true
+trigger:
+  platform: state
+  entity_id: telegram_webhooks.command
+  to: '/ping'
+action:
+  - service: notify.telegram
+    data:
+      message: 'pong'
+```
+
+```yaml
+alias: 'telegram bot start command'
+hide_entity: true
+trigger:
+  platform: state
+  entity_id: telegram_webhooks.command
+  to: '/start'
+action:
+  - service: notify.telegram
+    data:
+      message: 'commands'
+      data:
+        keyboard:
+          - '/ping, /alarm'
+          - '/siren'
+```
