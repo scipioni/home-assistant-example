@@ -45,7 +45,7 @@ logger:
   logs:
 #    homeassistant.components.device_tracker: debug
 #    homeassistant.components.device_tracker.mqtt: debug
-    custom_components.telegram_bot: debug
+    custom_components.telegram_webhooks: debug
     homeassistant.components.http: debug
 
 device_tracker: !include device_trackers.yaml
@@ -97,7 +97,7 @@ graphite:
   host: 127.0.0.1
   port: 2003
 
-telegram_bot:
+telegram_webhooks:
   api_key: !secret telegram_token
   api_url: !secret telegram_webhook
   user_id:

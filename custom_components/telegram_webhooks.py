@@ -24,31 +24,35 @@ CONF_USER_ID = 'user_id'
 CONF_API_URL = 'api_url'
 
 DEPENDENCIES = ['http']
-DOMAIN = 'telegram_bot'
+DOMAIN = 'telegram_webhooks'
 
 CONFIG_SCHEMA = vol.Schema({
     DOMAIN: vol.Schema({
-        vol.Required(CONF_API_KEY): cv.string,
-        vol.Required(CONF_API_URL): cv.string,
+        vol.Optional(CONF_API_KEY, default=''): cv.string,
+        vol.Optional(CONF_API_URL, default=''): cv.string,
         vol.Required(CONF_USER_ID): {cv.string: cv.positive_int},
     }),
 }, extra=vol.ALLOW_EXTRA)
 
 
 def setup(hass, config):
-    """Setup the telegram_bot component."""
+    """Setup the telegram_webhooks component
+        - register webhook if API_KEY and API_URL specified
+        - register /api/telegram_webhooks as web service for telegram bot
+    """
     import telegram
 
     config = config[DOMAIN]
 
-    bot = telegram.Bot(config[CONF_API_KEY])
-    current_status = bot.getWebhookInfo()
-    _LOGGER.debug("telegram webhook status: %s", current_status)
-    if current_status and current_status['url'] != config[CONF_API_URL]:
-        if bot.setWebhook(config[CONF_API_URL]):
-            _LOGGER.info("set new telegram webhook")
-        else:
-            _LOGGER.error("telegram webhook failed")
+    if config.get(CONF_API_KEY, '') and config.get(CONF_API_URL, ''):
+        bot = telegram.Bot(config[CONF_API_KEY])
+        current_status = bot.getWebhookInfo()
+        _LOGGER.debug("telegram webhook status: %s", current_status)
+        if current_status and current_status['url'] != config[CONF_API_URL]:
+            if bot.setWebhook(config[CONF_API_URL]):
+                _LOGGER.info("set new telegram webhook")
+            else:
+                _LOGGER.error("telegram webhook failed")
 
     hass.http.register_view(TelegrambotPushReceiver(config[CONF_USER_ID]))
     hass.states.set('{}.command'.format(DOMAIN), '')
@@ -59,8 +63,8 @@ class TelegrambotPushReceiver(HomeAssistantView):
     """Handle pushes from telegram."""
 
     requires_auth = False
-    url = "/api/telegram_bot"
-    name = "telegram_bot"
+    url = "/api/telegram_webhooks"
+    name = "telegram_webhooks"
 
     def __init__(self, user_id):
         self.users = dict([(user_id, dev_id) for (dev_id, user_id) in user_id.items()])

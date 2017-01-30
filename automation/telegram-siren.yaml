@@ -1,7 +1,7 @@
 hide_entity: true
 trigger:
   platform: state
-  entity_id: telegram_bot.command
+  entity_id: telegram_webhooks.command
   to: '/siren'
 action:
   - service: homeassistant.turn_on
