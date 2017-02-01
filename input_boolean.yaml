@@ -20,3 +20,9 @@ motion_detected:
 
 restart_hass:
   name: restart HASS
+
+face_add:
+  name: aggiungi faccia
+
+face_train:
+  name: addestra riconoscimento faccia

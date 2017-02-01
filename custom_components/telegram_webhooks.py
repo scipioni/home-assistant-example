@@ -14,10 +14,11 @@ from homeassistant.const import HTTP_BAD_REQUEST
 import homeassistant.helpers.config_validation as cv
 from homeassistant.components.http import HomeAssistantView
 from homeassistant.const import CONF_API_KEY
+from homeassistant.components.notify.telegram import REQUIREMENTS as REQ_NOTIFY
 
 _LOGGER = logging.getLogger(__name__)
 
-REQUIREMENTS = ['python-telegram-bot==5.3.0']
+REQUIREMENTS = REQ_NOTIFY
 
 CONF_USER_ID = 'user_id'
 CONF_API_URL = 'api_url'

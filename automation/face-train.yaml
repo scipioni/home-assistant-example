@@ -1,0 +1,13 @@
+hide_entity: true
+trigger:
+  platform: state
+  entity_id: input_boolean.face_train
+  from: 'off'
+  to: 'on'
+action:
+  - service: microsoft_face.train_group
+    data:
+      group: famiglia
+
+
+
