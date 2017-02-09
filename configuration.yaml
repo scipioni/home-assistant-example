@@ -93,6 +93,10 @@ camera:
     ip: 192.168.2.14
     username: foscam
     password: !secret foscam_c1
+  - platform: generic
+    name: 'Bianca'
+    still_image_url: http://192.168.2.12:80/cgi-bin/anv/images_cgi?channel=0&user=admin&pwd=admin
+
 
 #graphite:
 #  host: 127.0.0.1
@@ -101,6 +105,13 @@ camera:
 telegram_webhooks:
   api_key: !secret telegram_token
   api_url: !secret telegram_webhook
+  trusted_networks:
+    - 149.154.167.197/32
+    - 149.154.167.198/31
+    - 149.154.167.200/29
+    - 149.154.167.208/28
+    - 149.154.167.224/29
+    - 149.154.167.232/31
   user_id:
     scipio: 73496590
 
