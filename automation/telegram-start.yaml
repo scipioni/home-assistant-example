@@ -1,9 +1,10 @@
 alias: 'telegram bot start'
 hide_entity: true
 trigger:
-  platform: state
-  entity_id: telegram_webhooks.command
-  to: '/start'
+  platform: event
+  event_type: telegram.command
+  event_data:
+    command: '/start'
 action:
   - service: notify.telegram
     data:

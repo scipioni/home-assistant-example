@@ -1,11 +1,12 @@
 alias: 'telegram bot'
 hide_entity: true
 trigger:
-  platform: state
-  entity_id: telegram_webhooks.command
-  to: '/ping'
+  platform: event
+  event_type: telegram.command
+  event_data:
+    command: '/ping'
 action:
   - service: notify.telegram
     data:
-      message: 'pong'
+      message: pong 
 
