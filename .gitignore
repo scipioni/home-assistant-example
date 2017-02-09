@@ -27,3 +27,6 @@ __pycache__
 /.pip
 /.bashrc
 .pylint.d
+.python_history
+/home-assistant.github.io
+/lib-dev

@@ -8,5 +8,5 @@ trigger:
 action:
   - service: notify.telegram
     data:
-      message: pong 
+      message: "pong"
 

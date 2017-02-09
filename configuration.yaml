@@ -12,6 +12,7 @@ frontend:
 http:
   api_password: !secret http_password
   use_x_forwarded_for: true
+  base_url: !secret base_url
 
 updater:
 
@@ -104,7 +105,7 @@ camera:
 
 telegram_webhooks:
   api_key: !secret telegram_token
-  api_url: !secret telegram_webhook
+  #api_url: !secret telegram_webhook
   trusted_networks:
     - 149.154.167.197/32
     - 149.154.167.198/31
