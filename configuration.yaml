@@ -20,10 +20,10 @@ discovery:
 
 conversation:
 
-history:
+#history:
 
-recorder:
-  purge_days: 2
+#recorder:
+#  purge_days: 2
 
 logbook:
 
@@ -48,6 +48,7 @@ logger:
 #    homeassistant.components.device_tracker: debug
 #    homeassistant.components.device_tracker.mqtt: debug
     custom_components.telegram_webhooks: debug
+    custom_components.grafana_webhooks: debug
     homeassistant.components.http: debug
 
 device_tracker: !include device_trackers.yaml
@@ -73,17 +74,10 @@ shell_command: !include_dir_merge_named shell_command
 
 ###########################################
 
-panel_iframe:
-  audio:
-    title: Musica
-    icon: mdi:music-box-outline
-    url: http://pi.home:6680/moped
-
-
 weblink:
   entities:
     - name: Musica
-      url: http://pi.home:6680/musicbox_webclient
+      url: http://cubo.home:6680/musicbox_webclient
     - name: Grafana
       url: http://pi.csgalileo.org/grafana/
     - name: Cloud
@@ -99,9 +93,9 @@ camera:
     still_image_url: http://192.168.2.12:80/cgi-bin/anv/images_cgi?channel=0&user=admin&pwd=admin
 
 
-#graphite:
-#  host: 127.0.0.1
-#  port: 2003
+graphite:
+  host: 127.0.0.1
+  port: 2003
 
 telegram_webhooks:
   api_key: !secret telegram_token
@@ -121,7 +115,7 @@ microsoft_face:
   api_key: !secret microsoft_api
 
 
-
+grafana_webhooks:
 
 
 

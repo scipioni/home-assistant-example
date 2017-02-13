@@ -11,7 +11,7 @@ action:
       message: 'commands'
       data:
         keyboard:
-          - '/ping, /alarm'
+          - '/ping, /alarm_off'
           - '/siren'
 
 

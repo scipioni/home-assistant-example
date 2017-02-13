@@ -4,7 +4,7 @@
 # /media/usb0/photo/C1_00626E611E80/snap/ IN_CLOSE_WRITE /home/hass/on-motion.sh $@$#
 
 IMAGE=$1
-[ -f $IMAGE ] && ln -sf $IMAGE /media/usb0/latest.jpg
+[ -f $IMAGE ] && ln -sf $IMAGE /media/photo/latest.jpg
 
 PASS=$(grep http_password ~/secrets.yaml | awk '{ print $2 }')
 

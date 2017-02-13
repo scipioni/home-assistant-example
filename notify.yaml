@@ -4,4 +4,8 @@
   chat_id: !secret telegram_chat
 - name: syslog
   platform: syslog
+- name: grafana
+  platform: command_line
+  command: "/home/hass/grafana.sh"
+
 

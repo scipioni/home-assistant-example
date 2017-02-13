@@ -1,0 +1,9 @@
+hide_entity: true
+trigger:
+  platform: event
+  event_type: telegram.command
+  event_data:
+    command: '/alarm_off'
+action:
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.allarme_armato

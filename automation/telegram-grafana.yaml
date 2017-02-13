@@ -1,0 +1,8 @@
+hide_entity: true
+trigger:
+  platform: event
+  event_type: grafana.alert
+action:
+  - service: notify.telegram
+    data:
+      message: "{{ trigger.event.data.payload }}"
