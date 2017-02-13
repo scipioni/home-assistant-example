@@ -5,4 +5,4 @@ trigger:
 action:
   - service: notify.telegram
     data:
-      message: "{{ trigger.event.data.payload }}"
+      message: "grafana"

@@ -101,9 +101,13 @@ class BotPushReceiver(HomeAssistantView):
 
         try:
             data = yield from request.json()
-            data = data['message']
-        except (ValueError, IndexError):
+        except ValueError:
+            _LOGGER.error("Received telegram data: %s", data)
             return self.json_message('Invalid JSON', HTTP_BAD_REQUEST)
+        
+        data = data.get('message')
+        if not data:
+            return self.json({})
 
         try:
             assert data['from']['id'] in self.users
