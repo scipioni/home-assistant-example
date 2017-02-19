@@ -1,3 +1,6 @@
 - platform: lg_netcast
   access_token: !secret lg_token
   host: 192.168.2.33
+- platform: mpd  
+  host: 127.0.0.1  
+  port: 6600  

@@ -1,0 +1,14 @@
+hide_entity: true
+initial_state: true
+trigger:
+  platform: event
+  event_type: telegram.command
+  event_data:
+    command: '/media'
+action:
+  - service: media_player.toggle
+    data:
+      entity_id: media_player.mpd
+  - service: notify.telegram
+    data:
+      message: 'music toggle'

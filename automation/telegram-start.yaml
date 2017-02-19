@@ -12,6 +12,6 @@ action:
       data:
         keyboard:
           - '/ping, /alarm_off'
-          - '/siren'
+          - '/siren, /media'
 
 
