@@ -117,4 +117,7 @@ microsoft_face:
 
 grafana_webhooks:
 
-
+panel_iframe:
+  music:
+    title: 'Music'
+    url: !secret music_url
