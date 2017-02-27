@@ -7,6 +7,8 @@ homeassistant:
   time_zone: Europe/Rome
   customize: !include_dir_merge_named customizations
 
+config:
+
 frontend:
 
 http:
@@ -41,6 +43,7 @@ sun:
 zwave:
   usb_path: /dev/ttyACM0
   config_path: /home/hass/lib/lib/python3.5/site-packages/libopenzwave-0.3.1-py3.5-linux-x86_64.egg/config
+  device_config: !include zwave_device_config.yaml
 
 logger:
   default: warning
@@ -50,6 +53,7 @@ logger:
     custom_components.telegram_webhooks: debug
     custom_components.grafana_webhooks: debug
     homeassistant.components.http: debug
+    homeassistant.components.tts: debug
 
 device_tracker: !include device_trackers.yaml
 
@@ -121,3 +125,10 @@ panel_iframe:
   music:
     title: 'Music'
     url: !secret music_url
+
+tts:
+  - platform: google
+    language: 'en'
+  - platform: picotts
+    language: 'en-US'
+    #language: 'it_I'

@@ -9,4 +9,8 @@ action:
   - service: notify.telegram
     data:
       message: "pong"
+  - service: tts.google_say 
+    data:
+      entity_id: media_player.gstreamer
+      message: "this is a test pong reply"
 
