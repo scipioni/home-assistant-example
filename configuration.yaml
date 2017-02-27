@@ -75,6 +75,8 @@ input_select: !include input_select.yaml
 
 shell_command: !include_dir_merge_named shell_command
 
+script: !include_dir_named scripts
+
 
 ###########################################
 

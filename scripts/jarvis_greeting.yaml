@@ -1,0 +1,15 @@
+alias: Jarvis Greeting
+sequence:
+  - service: tts.google_say
+    data:
+      entity_id: media_player.gstreamer
+      message: >
+        {% if now().strftime('%H')|int < 12 %}
+        Good morning.
+        {% elif now().strftime('%H')|int < 18 %}
+        Good afternoon.
+        {% else %}
+        Good evening.
+        {% endif %}
+        It's currently {{ states('sensor.yweather_condition') }} and {{ states('sensor.fibaro_system_fgms001zw5_motion_sensor_temperature_2_1')|round }} degrees.
+
