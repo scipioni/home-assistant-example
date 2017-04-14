@@ -1,0 +1,10 @@
+hide_entity: true
+trigger:
+  platform: event
+  event_type: telegram_text
+action:
+  - service:
+      tts.google_say
+    data_template:
+      entity_id: media_player.gstreamer
+      message: "{{ trigger.event.data.text }}"
