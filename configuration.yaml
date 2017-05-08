@@ -109,7 +109,9 @@ graphite:
   host: 127.0.0.1
   port: 2003
 
-telegram_webhooks:
+#telegram_webhooks:
+telegram_bot:
+  platform: webhooks
   api_key: !secret telegram_token
   #api_url: !secret telegram_webhook
   trusted_networks:
@@ -119,8 +121,10 @@ telegram_webhooks:
     - 149.154.167.208/28
     - 149.154.167.224/29
     - 149.154.167.232/31
-  user_id:
-    scipio: 73496590
+  allowed_chat_ids:
+    - 73496590
+#  user_id:
+#    scipio: 73496590
 
 
 microsoft_face:

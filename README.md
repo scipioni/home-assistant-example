@@ -20,6 +20,19 @@ home-assistant real configuration
   }
 )
 
+## camera FTP clean
+
+/etc/cron.daily/photo-clean
+```
+#!/bin/sh
+
+ARCHIVE=/media/photo
+DAYS=2
+
+find ${ARCHIVE} -mtime +${DAYS} -exec rm {} \;
+
+```
+
 ## telegram webhooks
 
 ```yaml
