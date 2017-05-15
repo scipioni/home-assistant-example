@@ -47,13 +47,14 @@ zwave:
 
 logger:
   default: warning
+  #default: debug
   logs:
 #    homeassistant.components.device_tracker: debug
 #    homeassistant.components.device_tracker.mqtt: debug
-    custom_components.telegram_webhooks: debug
-    custom_components.grafana_webhooks: debug
-    homeassistant.components.http: debug
-    homeassistant.components.tts: debug
+#    custom_components.telegram_webhooks: debug
+#    custom_components.grafana_webhooks: debug
+#    homeassistant.components.http: debug
+    homeassistant.components.shell_command: debug
 
 device_tracker: !include device_trackers.yaml
 
@@ -73,7 +74,7 @@ input_boolean: !include input_boolean.yaml
 
 input_select: !include input_select.yaml
 
-shell_command: !include_dir_merge_named shell_command
+shell_command: !include shell_command.yaml
 
 script: !include_dir_named scripts
 
@@ -144,3 +145,5 @@ tts:
   - platform: picotts
     language: 'en-US'
     #language: 'it_I'
+
+

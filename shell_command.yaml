@@ -1,0 +1,2 @@
+youtube_play: bash /home/hass/youtube-play "{{ text }}"
+youtube_test: /home/hass/youtube-play "https://www.youtube.com/watch?v=c8qrwON1-zE"

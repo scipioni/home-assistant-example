@@ -1,0 +1,17 @@
+alias: 'telegram bot start'
+hide_entity: true
+trigger:
+  platform: event
+  event_type: telegram_command
+  event_data:
+    command: '/start'
+action:
+  - service: notify.telegram
+    data:
+      message: 'commands'
+      data:
+        keyboard:
+          - '/ping, /alarm_off'
+          - '/siren, /media'
+
+

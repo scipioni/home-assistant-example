@@ -1,0 +1,11 @@
+alias: 'youtube test'
+hide_entity: true
+trigger:
+  platform: state
+  entity_id: input_boolean.youtube_test
+  to: 'on'
+action:
+  - service: shell_command.youtube_play
+    data_template:
+      text: 'https://www.youtube.com/watch?v=pnoGm8L6u5k'
+

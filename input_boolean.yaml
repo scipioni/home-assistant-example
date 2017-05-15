@@ -26,3 +26,7 @@ face_add:
 
 face_train:
   name: addestra riconoscimento faccia
+
+youtube_test:
+  name: youtube test
+  initial: off
