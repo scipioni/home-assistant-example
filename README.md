@@ -89,6 +89,7 @@ action:
 
 ## youtube
 
+Configure pulse in headless mode http://wiki.csgalileo.org/doku.php/tips:audio#pulse_headless
 
 Install youtube-dl
 ```
