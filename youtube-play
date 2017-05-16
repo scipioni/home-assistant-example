@@ -4,36 +4,57 @@
 ARCHIVE=/media/music
 
 ####
+#set -x
 
 TEXT="$1"
+TAG=$2 # subfolder to store tagged music
+
+# change directory to $ARCHIVE/$TAG
 cd $ARCHIVE
+if [ -d "$TAG" ]; then
+	mkdir -p $TAG
+	cd $TAG
+fi
 
 play_stop() {
 	killall gst-play-1.0 2>/dev/null
 }
 
 play_file() {
-	logger -t youtube-play "playing $1"
+	FILENAME="$1"
+	
+	#logger -t youtube-play "playing $1"
 	play_stop
-	gst-play-1.0 "$1"
+	send_message "play ${FILENAME/-???????????.*/}"
+	gst-play-1.0 "$FILENAME"
+}
+
+send_message() {
+	MESSAGE="$1"
+	echo "$MESSAGE"
+	PASS=$(grep http_password ~/secrets.yaml | awk '{ print $2 }')
+	curl -X POST -H "x-ha-access: $PASS" -H "Content-Type: application/json" -d "{\"message\": \"$MESSAGE\"}" \
+		http://localhost:8123/api/services/notify/telegram
 }
 
 
 if [[ "$TEXT" =~ "https://" ]]; then
 	logger -t youtube-play "detected youtube url $TEXT"
 	FILENAME=$(youtube-dl --get-filename -f bestaudio $TEXT) # find music title
-	youtube-dl -f bestaudio $URL # download if not present
+	send_message "download ${FILENAME/-???????????.*/}"
+	youtube-dl -f bestaudio $TEXT # download if not present
+	play_file "$FILENAME"
 elif [[ "$TEXT" == "stop" ]]; then
 	logger -t youtube-play "playing stop"
+	send_message "stopped"
 	play_stop
-else
+else # pattern matching with $TEXT
 	logger -t youtube-play "detected music $TEXT"
 	shopt -s nocaseglob
-	gst-play-1.0 *$1*
+	cd $ARCHIVE
+	find -iname "*"$*"*" -type f | while read file; do
+		play_file "$file"
+	done
 fi
-
-
-
-
 
 exit 0

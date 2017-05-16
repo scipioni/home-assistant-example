@@ -1,15 +1,10 @@
-# see https://community.home-assistant.io/t/passing-dynamic-info-to-shell-command/4212/3
-alias: 'telegram youtube'
+alias: 'telegram youtube BOT'
 hide_entity: true
 trigger:
   platform: event
   event_type: telegram_text
 action:
-  - service: notify.telegram
-    data_template:
-      message: 'playing {{ trigger.event.data.text }} ...'
   - service: shell_command.youtube_play
     data_template:
-      #text: 'https://www.youtube.com/watch?v=_Lv6LkAmFTU'
       text: "{{ trigger.event.data.text }}"
 
