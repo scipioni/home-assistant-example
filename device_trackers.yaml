@@ -1,7 +1,7 @@
-- platform: ping
-  count: 1
-  hosts:
-    scipio: 192.168.2.20
-    simo: 192.168.2.25
+#- platform: ping
+#  count: 1
+#  hosts:
+#    scipio: 192.168.2.20
+#    simo: 192.168.2.25
 
 

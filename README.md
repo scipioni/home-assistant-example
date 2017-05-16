@@ -86,3 +86,15 @@ action:
           - '/ping, /alarm'
           - '/siren'
 ```
+
+## youtube
+
+
+Install youtube-dl
+```
+sudo apt install youtube-dl
+```
+
+Put youtube-play in /home/pi and create automation/telegram-youtube
+
+Create shell_command.yaml (adjusting path inside) and import from configuration.yaml

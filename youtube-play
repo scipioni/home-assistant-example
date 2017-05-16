@@ -1,18 +1,39 @@
-#!/bin/sh
+#!/bin/bash
 
-URL="$1"
+####
 ARCHIVE=/media/music
 
-logger -t youtube-play "play $URL"
+####
 
-
+TEXT="$1"
 cd $ARCHIVE
 
-FILENAME=$(youtube-dl --get-filename -f bestaudio $URL)
-logger -t youtube-play "FILENAME=$FILENAME"
-youtube-dl -f bestaudio $URL
+play_stop() {
+	killall gst-play-1.0 2>/dev/null
+}
 
-killall gst-play-1.0
-gst-play-1.0 "$FILENAME"
+play_file() {
+	logger -t youtube-play "playing $1"
+	play_stop
+	gst-play-1.0 "$1"
+}
 
 
+if [[ "$TEXT" =~ "https://" ]]; then
+	logger -t youtube-play "detected youtube url $TEXT"
+	FILENAME=$(youtube-dl --get-filename -f bestaudio $TEXT) # find music title
+	youtube-dl -f bestaudio $URL # download if not present
+elif [[ "$TEXT" == "stop" ]]; then
+	logger -t youtube-play "playing stop"
+	play_stop
+else
+	logger -t youtube-play "detected music $TEXT"
+	shopt -s nocaseglob
+	gst-play-1.0 *$1*
+fi
+
+
+
+
+
+exit 0

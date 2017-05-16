@@ -1,10 +1,13 @@
+alias: 'telegram tts'
 hide_entity: true
 trigger:
   platform: event
-  event_type: telegram_text
+  event_type: telegram_command
+  event_data:
+    command: '/say'
 action:
   - service:
       tts.google_say
     data_template:
       entity_id: media_player.gstreamer
-      message: "{{ trigger.event.data.text }}"
+      text: '{{" ".join(trigger.event.data["args"])}}'
