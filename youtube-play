@@ -1,20 +1,21 @@
 #!/bin/bash
 
-####
+#############################################
 ARCHIVE=/media/music
 
-####
-#set -x
+# examples:
+# https://blabla +cloud (download and save in cloud playlist)
+# +cloud (play cloud playlist)
+# always alright (play music)
+##############################################
 
-TEXT="$1"
-TAG=$2 # subfolder to store tagged music
+STOPFLAG=/tmp/.stopmusic
 
-# change directory to $ARCHIVE/$TAG
-cd $ARCHIVE
-if [ -d "$TAG" ]; then
-	mkdir -p $TAG
-	cd $TAG
-fi
+logme() {
+    echo $*
+	logger -t youtube-play "$*"
+}
+
 
 play_stop() {
 	killall gst-play-1.0 2>/dev/null
@@ -33,28 +34,56 @@ send_message() {
 	MESSAGE="$1"
 	echo "$MESSAGE"
 	PASS=$(grep http_password ~/secrets.yaml | awk '{ print $2 }')
-	curl -X POST -H "x-ha-access: $PASS" -H "Content-Type: application/json" -d "{\"message\": \"$MESSAGE\"}" \
+	curl -X POST -H "x-ha-access: $PASS" -H "Content-Type: application/json" -d "{\"message\": \"$MESSAGE\", \"data\":{\"keyboard\":\"stop,next\"}}" \
 		http://localhost:8123/api/services/notify/telegram
 }
 
+#WORDS="${1,,}" # lower case
+IFS=' ' read -r -a WORDS <<< "$*" # lower and split into array
 
-if [[ "$TEXT" =~ "https://" ]]; then
-	logger -t youtube-play "detected youtube url $TEXT"
-	FILENAME=$(youtube-dl --get-filename -f bestaudio $TEXT) # find music title
+#LAST="${WORDS##* }"
+
+COMMAND=${WORDS[-1]:0:1} # first char of last word
+
+# change directory to $ARCHIVE/$TAG
+cd $ARCHIVE
+if [ "$COMMAND" = "+" ]; then # playlist
+	PLAYLIST=${WORDS[-1]:1:99}
+	PLAYLIST=${PLAYLIST,,} # lowercase
+	if [ -n "$PLAYLIST" ]; then
+		unset WORDS[-1]
+		mkdir -p $PLAYLIST
+		cd $PLAYLIST
+	fi
+fi
+
+logme "WORDS='${WORDS[*]}', COMMAND='$COMMAND', PLAYLIST='$PLAYLIST'"
+
+# download from youtube
+if [[ "${WORDS[*]}" =~ "https://" ]]; then
+	URL=${WORDS[0]}
+	logme "detected youtube url=$URL"
+	FILENAME=$(youtube-dl --get-filename -f bestaudio "$URL") # find music title
 	send_message "download ${FILENAME/-???????????.*/}"
-	youtube-dl -f bestaudio $TEXT # download if not present
+	youtube-dl -f bestaudio "$URL" # download if not present
 	play_file "$FILENAME"
-elif [[ "$TEXT" == "stop" ]]; then
-	logger -t youtube-play "playing stop"
-	send_message "stopped"
+# stop music
+elif [[ "${WORDS[0],,}" == "stop" ]]; then
+	touch $STOPFLAG
 	play_stop
-else # pattern matching with $TEXT
-	logger -t youtube-play "detected music $TEXT"
-	shopt -s nocaseglob
+# next 
+elif [[ "${WORDS[0],,}" == "next" ]]; then
+	play_stop
+# search music 
+else # pattern matching with $WORDS
 	cd $ARCHIVE
-	find -iname "*"$*"*" -type f | while read file; do
+	SEARCH=${WORDS[*]}
+	find -iname "*$SEARCH*" -type f | while read file; do
+		[ -f $STOPFLAG ] && break		
 		play_file "$file"
 	done
 fi
+	
+rm -f $STOPFLAG
 
 exit 0
