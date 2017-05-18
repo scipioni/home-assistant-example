@@ -91,10 +91,15 @@ action:
 
 Configure pulse in headless mode http://wiki.csgalileo.org/doku.php/tips:audio#pulse_headless
 
-Install youtube-dl
+Create youtube-dl update job in /etc/cron.daily/update-youtube-dl (chmod +x)
 ```
-sudo apt install youtube-dl
+#!/bin/sh
+
+wget https://yt-dl.org/latest/youtube-dl -O /usr/local/bin/youtube-dl
+
 ```
+
+Execute at least one time /etc/cron.daily/update-youtube-dl
 
 Put youtube-play in /home/pi and create automation/telegram-youtube
 

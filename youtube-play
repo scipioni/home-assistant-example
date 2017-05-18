@@ -58,6 +58,8 @@ if [ "$COMMAND" = "+" ]; then # playlist
 fi
 
 logme "WORDS='${WORDS[*]}', COMMAND='$COMMAND', PLAYLIST='$PLAYLIST'"
+#exec 3>&1 1>> /tmp/youtube.log 2>&1
+#set -x
 
 # download from youtube
 if [[ "${WORDS[*]}" =~ "https://" ]]; then
