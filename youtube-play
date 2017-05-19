@@ -2,11 +2,14 @@
 
 #############################################
 ARCHIVE=/media/music
+cd $ARCHIVE
 
 # examples:
 # https://blabla +cloud (download and save in cloud playlist)
+# https://youtube.com/playlist? (download playlist)
 # +cloud (play cloud playlist)
 # always alright (play music)
+# 
 ##############################################
 
 STOPFLAG=/tmp/.stopmusic
@@ -18,6 +21,8 @@ logme() {
 
 
 play_stop() {
+	ALL=$1
+	[ -n "$ALL" ] && touch $STOPFLAG
 	killall gst-play-1.0 2>/dev/null
 }
 
@@ -26,15 +31,18 @@ play_file() {
 	
 	#logger -t youtube-play "playing $1"
 	play_stop
-	send_message "play ${FILENAME/-???????????.*/}"
+	send_message "${FILENAME/-???????????.*/}"
 	gst-play-1.0 "$FILENAME"
 }
 
 send_message() {
 	MESSAGE="$1"
-	echo "$MESSAGE"
+	KEYBOARD="$2"
+	[ -z "$KEYBOARD" ] && KEYBOARD='[".stop,.list,.next",".vol+,.help,.vol-"]'
+	#echo "$MESSAGE"
 	PASS=$(grep http_password ~/secrets.yaml | awk '{ print $2 }')
-	curl -X POST -H "x-ha-access: $PASS" -H "Content-Type: application/json" -d "{\"message\": \"$MESSAGE\", \"data\":{\"keyboard\":\"stop,next\"}}" \
+	curl -X POST -H "x-ha-access: $PASS" -H "Content-Type: application/json" \
+		-d "{\"message\": \"$MESSAGE\", \"data\":{\"keyboard\":$KEYBOARD}}" \
 		http://localhost:8123/api/services/notify/telegram
 }
 
@@ -45,44 +53,74 @@ IFS=' ' read -r -a WORDS <<< "$*" # lower and split into array
 
 COMMAND=${WORDS[-1]:0:1} # first char of last word
 
-# change directory to $ARCHIVE/$TAG
-cd $ARCHIVE
+#exec 3>&1 1>> /tmp/youtube.log 2>&1
+#set -x
+
+
 if [ "$COMMAND" = "+" ]; then # playlist
 	PLAYLIST=${WORDS[-1]:1:99}
 	PLAYLIST=${PLAYLIST,,} # lowercase
 	if [ -n "$PLAYLIST" ]; then
 		unset WORDS[-1]
-		mkdir -p $PLAYLIST
-		cd $PLAYLIST
+		MATCHED=$(find -maxdepth 1 -iname "*$PLAYLIST*" -type d | head -n 1)
+		[ -n "$MATCHED" ] && PLAYLIST="$MATCHED"
+		mkdir -p "$PLAYLIST"
+		cd "$PLAYLIST"
 	fi
 fi
 
-logme "WORDS='${WORDS[*]}', COMMAND='$COMMAND', PLAYLIST='$PLAYLIST'"
-#exec 3>&1 1>> /tmp/youtube.log 2>&1
-#set -x
+if [ "$COMMAND" = "." ]; then
+	case ${WORDS[-1]:1:99} in
+		stop)
+			play_stop 'all'
+			;;
+		next)
+			play_stop
+			;;
+		vol-)
+			amixer set PCM 20%-
+			;;	
+		vol+)
+			amixer set PCM 20%+
+			;;	
+		list)
+			PLAYLISTS="$(find . -maxdepth 1 -type d -name "??*" | sort | xargs | sed 's|^..||' | sed 's| \.\/|\\n|g')"
+			send_message "$PLAYLISTS"
+			;;
+		help)
+			send_message "<string>: play song\n+<playlist>: play playlist\n<url> +<playlist>: download from url and put in playlist"
+			;;	
+		*)
+			send_message "command not known"
+	esac
+	exit 0
+fi
 
-# download from youtube
-if [[ "${WORDS[*]}" =~ "https://" ]]; then
+
+# download playlist from youtube
+if [[ "${WORDS[*]}" =~ '/playlist?' ]]; then
+	URL=${WORDS[0]}
+	logme "detected youtube playlist"
+	youtube-dl -f bestaudio --download-archive .archive.txt -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' "$URL"
+	PLAYLIST=$(find . -maxdepth 1 -type d -printf "%T+|%p\n" | sort -nr | head -n1 | cut -d '|' -f2 | cut -b 3-)
+	SIZE=$(du "$PLAYLIST" -hs | cut -f1)
+	send_message "downloaded playlist '$PLAYLIST' $SIZE"
+# download single video from youtube
+elif [[ "${WORDS[*]}" =~ "https://" ]]; then
 	URL=${WORDS[0]}
 	logme "detected youtube url=$URL"
 	FILENAME=$(youtube-dl --get-filename -f bestaudio "$URL") # find music title
-	send_message "download ${FILENAME/-???????????.*/}"
-	youtube-dl -f bestaudio "$URL" # download if not present
+	youtube-dl -f bestaudio --download-archive .archive.txt -o '%(title)s.%(ext)s' "$URL" # download if not present
+	send_message "downloaded ${FILENAME/-???????????.*/}"
+	play_stop 'all'
 	play_file "$FILENAME"
-# stop music
-elif [[ "${WORDS[0],,}" == "stop" ]]; then
-	touch $STOPFLAG
-	play_stop
-# next 
-elif [[ "${WORDS[0],,}" == "next" ]]; then
-	play_stop
-# search music 
-else # pattern matching with $WORDS
-	cd $ARCHIVE
+# pattern matching with $WORDS
+else 
 	SEARCH=${WORDS[*]}
-	find -iname "*$SEARCH*" -type f | while read file; do
+	play_stop 'all'
+	find -iname "*$SEARCH*" ! -name ".*" -type f | sort | while read file; do
 		[ -f $STOPFLAG ] && break		
-		play_file "$file"
+		play_file "${file#./}"
 	done
 fi
 	
