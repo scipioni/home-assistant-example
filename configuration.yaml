@@ -122,11 +122,12 @@ telegram_bot:
     - 149.154.167.232/31
   allowed_chat_ids:
     - 73496590
+    - 84015820
     #- -209766105
 
 
-microsoft_face:
-  api_key: !secret microsoft_api
+#microsoft_face:
+#  api_key: !secret microsoft_api
 
 
 grafana_webhooks:

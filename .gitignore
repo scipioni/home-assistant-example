@@ -30,3 +30,4 @@ __pycache__
 .python_history
 /home-assistant.github.io
 /lib-dev
+.config
