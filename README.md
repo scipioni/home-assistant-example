@@ -33,6 +33,18 @@ find ${ARCHIVE} -mtime +${DAYS} -exec rm {} \;
 
 ```
 
+## camera FTP stop/start 
+
+create file /etc/sudoers.d/pi
+```
+pi  ALL=(ALL:ALL) NOPASSWD: /bin/systemctl * pure-ftpd.service
+```
+
+define ftp_stop and ftp_start in shell_command.yaml
+
+define automation/ftp-stop.yaml and automation/ftp-start.yaml
+
+
 ## telegram webhooks
 
 ```yaml

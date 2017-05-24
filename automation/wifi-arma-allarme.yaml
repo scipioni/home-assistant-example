@@ -1,6 +1,5 @@
 alias: 'wifi arma automaticamente allarme'
 hide_entity: false
-initial_state: false
 trigger:
   platform: state
   entity_id: group.famiglia
