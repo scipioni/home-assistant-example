@@ -1,5 +1,5 @@
 - platform: ping
-  count: 1
+  count: 2
   hosts:
     scipio: 192.168.2.20
     simo: 192.168.2.25

@@ -49,7 +49,7 @@ logger:
   default: warning
   #default: debug
   logs:
-#    homeassistant.components.device_tracker: debug
+    homeassistant.components.device_tracker: debug
 #    homeassistant.components.device_tracker.mqtt: debug
 #    custom_components.telegram_webhooks: debug
 #    custom_components.grafana_webhooks: debug
