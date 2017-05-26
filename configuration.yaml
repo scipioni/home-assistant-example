@@ -53,7 +53,7 @@ logger:
 #    homeassistant.components.device_tracker.mqtt: debug
 #    custom_components.telegram_webhooks: debug
 #    custom_components.grafana_webhooks: debug
-#    homeassistant.components.http: debug
+    homeassistant.components.http: debug
     homeassistant.components.shell_command: debug
 
 device_tracker: !include device_trackers.yaml

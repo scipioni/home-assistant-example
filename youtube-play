@@ -101,7 +101,7 @@ fi
 if [[ "${WORDS[*]}" =~ '/playlist?' ]]; then
 	URL=${WORDS[0]}
 	logme "detected youtube playlist"
-	youtube-dl -f bestaudio --download-archive .archive.txt -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' "$URL"
+	youtube-dl -f m4a --download-archive .archive.txt -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' "$URL"
 	PLAYLIST=$(find . -maxdepth 1 -type d -printf "%T+|%p\n" | sort -nr | head -n1 | cut -d '|' -f2 | cut -b 3-)
 	SIZE=$(du "$PLAYLIST" -hs | cut -f1)
 	send_message "downloaded playlist '$PLAYLIST' $SIZE"
@@ -110,7 +110,7 @@ elif [[ "${WORDS[*]}" =~ "https://" ]]; then
 	URL=${WORDS[0]}
 	logme "detected youtube url=$URL"
 	FILENAME=$(youtube-dl --get-filename -f bestaudio "$URL") # find music title
-	youtube-dl -f bestaudio --download-archive .archive.txt -o '%(title)s.%(ext)s' "$URL" # download if not present
+	youtube-dl -f m4a --download-archive .archive.txt -o '%(title)s.%(ext)s' "$URL" # download if not present
 	send_message "downloaded ${FILENAME/-???????????.*/}"
 	play_stop 'all'
 	play_file "$FILENAME"
