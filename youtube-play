@@ -31,7 +31,7 @@ play_file() {
 	
 	#logger -t youtube-play "playing $1"
 	play_stop
-	send_message "${FILENAME/-???????????.*/}"
+	send_message "${FILENAME}"
 	gst-play-1.0 "$FILENAME"
 }
 
@@ -45,6 +45,16 @@ send_message() {
 			-d "{\"message\": \"$MESSAGE\", \"data\":{\"keyboard\":$KEYBOARD}}" \
 			http://localhost:8123/api/services/notify/${service}
 	done
+}
+
+download() {
+	URL="$1"
+	OUT="$2"
+	youtube-dl -f m4a \
+		--metadata-from-title "%(artist)s - %(title)s" --add-metadata \
+		--download-archive ${ARCHIVE}/.archive.txt \
+		--youtube-skip-dash-manifest \
+		-o "$OUT" "$URL"
 }
 
 IFS=' ' read -r -a WORDS <<< "$*" # lower and split into array
@@ -101,7 +111,7 @@ fi
 if [[ "${WORDS[*]}" =~ '/playlist?' ]]; then
 	URL=${WORDS[0]}
 	logme "detected youtube playlist"
-	youtube-dl -f m4a --download-archive .archive.txt -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' "$URL"
+	download "$URL" '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'
 	PLAYLIST=$(find . -maxdepth 1 -type d -printf "%T+|%p\n" | sort -nr | head -n1 | cut -d '|' -f2 | cut -b 3-)
 	SIZE=$(du "$PLAYLIST" -hs | cut -f1)
 	send_message "downloaded playlist '$PLAYLIST' $SIZE"
@@ -109,9 +119,10 @@ if [[ "${WORDS[*]}" =~ '/playlist?' ]]; then
 elif [[ "${WORDS[*]}" =~ "https://" ]]; then
 	URL=${WORDS[0]}
 	logme "detected youtube url=$URL"
-	FILENAME=$(youtube-dl --get-filename -f bestaudio "$URL") # find music title
-	youtube-dl -f m4a --download-archive .archive.txt -o '%(title)s.%(ext)s' "$URL" # download if not present
-	send_message "downloaded ${FILENAME/-???????????.*/}"
+	#FILENAME=$(youtube-dl --get-filename -f m4a "$URL") # find music title
+	download "$URL" '%(title)s.%(ext)s'
+	FILENAME=$(find . -maxdepth 1 -type f -printf "%T+|%p\n" | sort -nr | head -n1 | cut -d '|' -f2 | cut -b 3-)
+	send_message "downloaded ${FILENAME/.m4a/}"
 	play_stop 'all'
 	play_file "$FILENAME"
 # pattern matching with $WORDS
