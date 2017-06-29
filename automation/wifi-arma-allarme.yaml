@@ -1,4 +1,5 @@
 alias: 'wifi arma automaticamente allarme'
+initial_state: false
 hide_entity: false
 trigger:
   platform: state

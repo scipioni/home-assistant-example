@@ -22,10 +22,10 @@ discovery:
 
 conversation:
 
-#history:
+history:
 
-#recorder:
-#  purge_days: 2
+recorder:
+  purge_days: 2
 
 logbook:
 

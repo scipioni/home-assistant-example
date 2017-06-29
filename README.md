@@ -107,7 +107,12 @@ Create youtube-dl update job in /etc/cron.daily/update-youtube-dl (chmod +x)
 ```
 #!/bin/sh
 
-wget https://yt-dl.org/latest/youtube-dl -O /usr/local/bin/youtube-dl
+wget https://yt-dl.org/latest/youtube-dl -O /tmp/youtube-dl
+
+if [ ! -z /tmp/youtube-dl ]; then
+        mv /tmp/youtube-dl /usr/local/bin/youtube-dl
+        chmod +x /usr/local/bin/youtube-dl
+fi
 
 ```
 
