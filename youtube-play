@@ -38,6 +38,7 @@ play_file() {
 send_message() {
 	MESSAGE="$1"
 	KEYBOARD="$2"
+	MESSAGE=${MESSAGE//_/} # remove _
 	[ -z "$KEYBOARD" ] && KEYBOARD='[".stop,.list,.next",".vol+,.help,.vol-"]'
 	PASS=$(grep http_password ~/secrets.yaml | awk '{ print $2 }')
 	for service in 'telegram' 'telegram_simo'; do
