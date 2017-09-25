@@ -1,118 +1,80 @@
 sensor.fibaro_system_fgms001_motion_sensor_burglar:
-  friendly_name: 'motion esterno'
-
+  friendly_name: motion esterno
 sensor.fibaro_system_fgms001zw5_motion_sensor_temperature:
-  friendly_name: 'temperatura esterna'
-
+  friendly_name: temperatura esterna
 sensor.fibaro_system_fgms001zw5_motion_sensor_luminance:
-  friendly_name: 'luminosità esterna'
-
+  friendly_name: "luminosit\xE0 esterna"
 sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity:
-  friendly_name: 'attività sismica'
-
+  friendly_name: "attivit\xE0 sismica"
 sensor.fibaro_system_fgms001_motion_sensor_burglar_2:
-  friendly_name: 'motion camera'
-
+  friendly_name: motion camera
 sensor.fibaro_system_fgms001zw5_motion_sensor_temperature_2:
-  friendly_name: 'temperatura camera'
-
+  friendly_name: temperatura camera
 sensor.fibaro_system_fgms001zw5_motion_sensor_luminance_2:
-  friendly_name: 'luminosità camera'
-
-# presa frigorifero
+  friendly_name: "luminosit\xE0 camera"
 switch.greenwave_powernode_1_port_switch:
   friendly_name: frigorifero
-
 sensor.greenwave_powernode_1_port_energy:
   friendly_name: consumo totale frigorifero
-
 sensor.greenwave_powernode_1_port_power:
   friendly_name: consumo istantaneo frigorifero
-
-# presa lavastoviglie
 switch.greenwave_powernode_1_port_switch_2:
   friendly_name: lavastoviglie
-
 sensor.greenwave_powernode_1_port_energy_2:
   friendly_name: consumo totale lavastoviglie
-
 sensor.greenwave_powernode_1_port_power_2:
   friendly_name: consumo istantaneo lavastoviglie
-
-# presa lavatrice
 switch.greenwave_powernode_1_port_switch_3:
   friendly_name: lavatrice
-
 sensor.greenwave_powernode_1_port_energy_3:
   friendly_name: consumo totale lavatrice
-
 sensor.greenwave_powernode_1_port_power_3:
   friendly_name: consumo istantaneo lavatrice
-
-
-
 switch.aeotec_zw096_smart_switch_6_switch:
   friendly_name: presa 1
-  sensor_class: 'None'
-
+  sensor_class: None
 sensor.aeotec_zw096_smart_switch_6_power:
   friendly_name: consumo istantaneo 1
-
 sensor.aeotec_zw096_smart_switch_6_energy:
   friendly_name: energia 1
-
 sensor.speedtest_download:
   icon: mdi:download
   friendly_name: Download
-
 sensor.speedtest_upload:
   icon: mdi:upload
   friendly_name: Upload
-
 sensor.speedtest_ping:
   icon: mdi:timer
   friendly_name: Ping
-
 sun.sun:
   icon: mdi:weather-sunny
-
 sensor.aeotec_zw100_multisensor_6_relative_humidity:
-  friendly_name: 'umidità soggiorno'
-
+  friendly_name: "umidit\xE0 soggiorno"
 sensor.aeotec_zw100_multisensor_6_burglar:
-  friendly_name: 'motion soggiorno'
-
+  friendly_name: motion soggiorno
 sensor.aeotec_zw100_multisensor_6_ultraviolet:
-  friendly_name: 'ultravioletti'
-
+  friendly_name: ultravioletti
 sensor.aeotec_zw100_multisensor_6_luminance:
-  friendly_name: 'luce soggiorno'
-
+  friendly_name: luce soggiorno
 sensor.aeotec_zw100_multisensor_6_temperature:
-  friendly_name: 'temperatura soggiorno'
-
+  friendly_name: temperatura soggiorno
 switch.vision_zm1601eu5_battery_operated_siren_switch:
-  friendly_name: 'Sirena'
-
-
-# energia contatore e fotovoltaico
+  friendly_name: Sirena esterna
 sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_voltage:
-  friendly_name: 'Voltaggio'
-
+  friendly_name: Voltaggio
 sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_power_2:
-  friendly_name: 'consumo istantaneo casa'
-
+  friendly_name: consumo istantaneo casa
 sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_power_3:
-  friendly_name: 'produzione istantanea'
-
+  friendly_name: produzione istantanea
 sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_energy_2:
-  friendly_name: 'consumo totale casa'
-
+  friendly_name: consumo totale casa
 sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_energy_3:
-  friendly_name: 'produzione totale'
-
+  friendly_name: produzione totale
 sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_power_factor_2:
-  friendly_name: 'fattore di potenza'
-
+  friendly_name: fattore di potenza
 sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_power_factor_3:
-  friendly_name: 'fattore di potenza'
+  friendly_name: fattore di potenza
+camera.foscam_camera:
+  friendly_name: Camera soggiorno
+camera.bianca:
+  friendly_name: Camera esterna
