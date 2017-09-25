@@ -13,33 +13,33 @@ energia:
 consumi:
   name: Consumi
   entities:
-    - sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_voltage_11_16
-    - sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_power_11_8_2
-    - sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_energy_11_0_2
-    - sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_power_factor_11_24_2
-    - sensor.greenwave_powernode_1_port_energy_12_0
-    - sensor.greenwave_powernode_1_port_power_12_8
-    - sensor.greenwave_powernode_1_port_energy_13_0
-    - sensor.greenwave_powernode_1_port_power_13_8
-    - sensor.greenwave_powernode_1_port_energy_14_0
-    - sensor.greenwave_powernode_1_port_power_14_8
+    - sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_voltage
+    - sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_power_2
+    - sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_energy_2
+    - sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_power_factor_2
+    - sensor.greenwave_powernode_1_port_energy
+    - sensor.greenwave_powernode_1_port_power
+    - sensor.greenwave_powernode_1_port_energy_2
+    - sensor.greenwave_powernode_1_port_power_2
+    - sensor.greenwave_powernode_1_port_energy_3
+    - sensor.greenwave_powernode_1_port_power_3
 
 fotovoltaico:
   name: Fotovoltaico
   entities:
-    - sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_voltage_11_16
-    - sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_power_11_8_3
-    - sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_energy_11_0_3
-    - sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_power_factor_11_24_3
+    - sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_voltage
+    - sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_power_3
+    - sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_energy_3
+    - sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_power_factor_3
 
 soggiorno:
   name: Soggiorno
   entities:
-    - sensor.aeotec_zw100_multisensor_6_temperature_6_1
-    - sensor.aeotec_zw100_multisensor_6_relative_humidity_6_5
-    - sensor.aeotec_zw100_multisensor_6_burglar_6_10
-    - sensor.aeotec_zw100_multisensor_6_ultraviolet_6_27
-    - sensor.aeotec_zw100_multisensor_6_luminance_6_3
+    - sensor.aeotec_zw100_multisensor_6_temperature
+    - sensor.aeotec_zw100_multisensor_6_relative_humidity
+    - sensor.aeotec_zw100_multisensor_6_burglar
+    - sensor.aeotec_zw100_multisensor_6_ultraviolet
+    - sensor.aeotec_zw100_multisensor_6_luminance
     - camera.soggiorno
     - media_player.lg_tv_remote
     - media_player.shield
@@ -47,35 +47,35 @@ soggiorno:
 cucina:
   name: Cucina
   entities:
-    - switch.greenwave_powernode_1_port_switch_12_0
-    - switch.greenwave_powernode_1_port_switch_13_0
+    - switch.greenwave_powernode_1_port_switch
+    - switch.greenwave_powernode_1_port_switch_2
 
 camere:
   name: Camere
   entities:
-    - sensor.fibaro_system_fgms001_motion_sensor_burglar_7_10
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature_7_1
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance_7_3
+    - sensor.fibaro_system_fgms001_motion_sensor_burglar_2
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature_2
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance_2
 
 notte:
   name: Zona Notte
   entities:
-    - switch.greenwave_powernode_1_port_switch_14_0
+    - switch.greenwave_powernode_1_port_switch_3
 
 esterno:
   name: Esterno
   entities:
-    - sensor.fibaro_system_fgms001_motion_sensor_burglar_2_10
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature_2_1
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance_2_3
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity_2_25
+    - sensor.fibaro_system_fgms001_motion_sensor_burglar
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
+    - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
 
 allarme:
   name: Allarme
   entities:
     - input_boolean.allarme_armato
     - input_select.sirena
-    - switch.vision_zm1601eu5_battery_operated_siren_switch_9_0
+    - switch.vision_zm1601eu5_battery_operated_siren_switch
     - automation.wifi_arma_automaticamente_allarme
     - input_boolean.allarme_scattato
     - input_boolean.allarme_test
