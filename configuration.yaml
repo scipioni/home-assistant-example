@@ -23,8 +23,6 @@ updater:
 
 discovery:
 
-conversation:
-
 history:
 
 recorder:
@@ -164,3 +162,9 @@ switch:
         #command_off: 'JgBgAAABKpITEhQRFDUTEhQRFBETEhQRFDUSOBEUFDYROBM3ETkTNhM3ERQUERQ1ExIUERQRFBEUERM2FDYRFBQ2EzYUNhQ2EwAFJwABKkgTAAxZAAEpSRQADFkAASlJFAANBQAAAAAAAAAA'
 
 
+conversation:
+  intents:
+    ShoppingListAddItem:
+      - Add {item} to my shopping list
+
+shopping_list:
