@@ -100,12 +100,12 @@ camera:
     password: !secret foscam_c1
     # rtsp url: rtsp://foscam:foscam1@192.168.2.21:554/11
     # rtsp mcast: rtsp://192.168.2.21:554/11
-  - platform: generic
-    name: 'Bianca'
-    still_image_url: http://192.168.2.12:80/cgi-bin/anv/images_cgi?channel=0&user=admin&pwd=admin
-    # sito del costruttore: http://www.szsinocam.net/ (non il .com) 
-    # model: szsinocam SN-IPC-5029CSW
-    # rtsp url: rtsp://192.168.2.12:554/ucast/11
+#  - platform: generic
+#    name: 'Bianca'
+#    still_image_url: http://192.168.2.12:80/cgi-bin/anv/images_cgi?channel=0&user=admin&pwd=admin
+#    # sito del costruttore: http://www.szsinocam.net/ (non il .com) 
+#    # model: szsinocam SN-IPC-5029CSW
+#    # rtsp url: rtsp://192.168.2.12:554/ucast/11
 
 
 graphite:
@@ -164,7 +164,9 @@ switch:
 
 conversation:
   intents:
-    ShoppingListAddItem:
+    HassShoppingListAddItem:
       - Add {item} to my shopping list
 
 shopping_list:
+
+map:
