@@ -49,54 +49,66 @@ define automation/ftp-stop.yaml and automation/ftp-start.yaml
 
 ```yaml
 # Example configuration.yaml entry
-telegram_webhooks:
-  api_key: ABCDEFGHJKLMNOPQRSTUVXYZ
-  api_url: https://<PUBLIC_HOST>/api/telegram_webhooks
-  user_id:
-    user1: USER_ID
-    user2: USER_ID
+telegram_bot:
+  platform: webhooks
+  api_key: !secret telegram_token
+  trusted_networks:
+    - 149.154.167.197/32
+    - 149.154.167.198/31
+    - 149.154.167.200/29
+    - 149.154.167.208/28
+    - 149.154.167.224/29
+    - 149.154.167.232/31
+  allowed_chat_ids:
+    - 73496590
+    - 84015820
 ```
 
 Configuration variables:
 
-- **user_id** array (Required): List of users allowed to send messages to
- webhooks (formt name: USER_ID).
 - **api_key** (*Optional*): The API token of yout bot. Setting the optional
  parameter `api_key` (with api_url) make an automatic registration of webhook
 in telgram bot.
-- **api_url** (*Optional*): The API token of your bot
- (see api_key for automatic update of webhooks url)
 
 
 ```yaml
-
-alias: 'telegram bot ping pong to check presence of bot'
+alias: 'telegram bot'
 hide_entity: true
 trigger:
-  platform: state
-  entity_id: telegram_webhooks.command
-  to: '/ping'
+  platform: event
+  event_type: telegram_command
+  event_data:
+    command: '/ping'
 action:
   - service: notify.telegram
     data:
-      message: 'pong'
+      message: "pong"
+  - service: tts.google_say 
+    data:
+      entity_id: media_player.gstreamer
+      message: "this is a test pong reply"
 ```
 
 ```yaml
-alias: 'telegram bot start command'
 hide_entity: true
 trigger:
-  platform: state
-  entity_id: telegram_webhooks.command
-  to: '/start'
+  platform: event
+  event_type: telegram_command
+  event_data:
+    command: '/siren'
 action:
+  - service: homeassistant.turn_on
+    entity_id: switch.vision_zm1601eu5_battery_operated_siren_switch_9_0
   - service: notify.telegram
     data:
-      message: 'commands'
-      data:
-        keyboard:
-          - '/ping, /alarm'
-          - '/siren'
+      message: "siren ON"
+  - delay: 
+      seconds: 10
+  - service: homeassistant.turn_off
+    entity_id: switch.vision_zm1601eu5_battery_operated_siren_switch_9_0
+  - service: notify.telegram
+    data:
+      message: "siren OFF"
 ```
 
 ## youtube

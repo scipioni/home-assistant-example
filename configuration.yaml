@@ -48,15 +48,15 @@ zwave:
   device_config: !include zwave_device_config.yaml
 
 logger:
-  default: warning
+  default: info
   #default: debug
-  logs:
-    homeassistant.components.device_tracker: debug
+#  logs:
+#    homeassistant.components.device_tracker: debug
 #    homeassistant.components.device_tracker.mqtt: debug
 #    custom_components.telegram_webhooks: debug
 #    custom_components.grafana_webhooks: debug
-    homeassistant.components.http: debug
-    homeassistant.components.shell_command: debug
+#    homeassistant.components.http: debug
+#    homeassistant.components.shell_command: debug
 
 device_tracker: !include device_trackers.yaml
 
@@ -170,3 +170,5 @@ conversation:
 shopping_list:
 
 map:
+
+python_script:
