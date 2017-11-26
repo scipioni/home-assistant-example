@@ -1,6 +1,32 @@
 # home-assistant-example
 home-assistant real configuration
 
+## zwave
+
+* Controller - Aeotec ZW090 Z-Stick Gen5 EU (node1)
+  - reset: press and hold pinhole with paperclip for 20 seconds (blu led for 2 seconds as success)
+* Multisensor - Aeotec Multisensor 6 (node2) multi_soggiorno
+  - reset: press and hold button for 20 seconds
+  - secure inclusion: press button 2 times within 1 second
+* Extender - Aeotec Range Extender (node3) repeater_garage
+  - reset: press and hold button for 20 seconds
+  - secure inclusion: press button 2 times within 1 second
+* Power - Zipato Micromodule Energy Meter PH-PAB01.eu Philio Technology Corporation (node4) power_contatore
+  - reset: press button 3 times within 2 seconds and within 1 second hold button for 5 seconds
+  - secure_inclusion: press button 3 times within 2 seconds 
+    - 8.1 W consumo casa
+    - 8.3 W fotovoltaico
+* Power - Greenwave PowerNode NS310-F 
+  - reset: press power button for few seconds at booting time
+  - secure_inclusion: press sync button for 2 seconds
+    - node5 lavastoviglie
+    - node6 frigorifero
+    - node8 asciugatrice e lavatrice
+* Multisensor - Fibaro FGSM-001
+  - reset: press and hold for 5 seconds until yellow, then release and press until red color
+  - secure_inclusion: quickle triple press button and after blu led press button
+    - node7
+    - node9
 
 ## camera motion trigger
 

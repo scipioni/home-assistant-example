@@ -8,8 +8,6 @@ pyozw.sqlite
 options.xml
 python-openzwave
 secrets.yaml
-/zwcfg*xml
-/zwscene.xml
 __pycache__
 /home-assistant.git
 /.netrc

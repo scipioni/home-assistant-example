@@ -23,11 +23,11 @@ updater:
 
 discovery:
 
-history:
+#history:
 
-recorder:
-  purge_interval: 2
-  purge_keep_days: 2
+#recorder:
+#  purge_interval: 2
+#  purge_keep_days: 2
 
 logbook:
 
@@ -44,8 +44,9 @@ sun:
 
 zwave:
   usb_path: /dev/zwave
-  config_path: /home/hass/lib/lib/python3.5/site-packages/libopenzwave-0.3.1-py3.5-linux-x86_64.egg/config
-  device_config: !include zwave_device_config.yaml
+  network_key: !secret zwave_network_key
+  #config_path: /home/hass/lib/lib/python3.5/site-packages/libopenzwave-0.3.1-py3.5-linux-x86_64.egg/config
+  #device_config: !include zwave_device_config.yaml
 
 logger:
   default: info
@@ -108,9 +109,25 @@ camera:
 #    # rtsp url: rtsp://192.168.2.12:554/ucast/11
 
 
-graphite:
+#graphite:
+#  host: 127.0.0.1
+#  port: 2003
+
+influxdb:
   host: 127.0.0.1
-  port: 2003
+  port: 8086
+  include:
+    entities:
+       - sensor.contatore_power_2
+       - sensor.contatore_power_3
+       - sensor.frigorifero_power
+       - sensor.lavastoviglie_power
+       - sensor.lavatrice_power
+       - sensor.multi_soggiorno_luminance
+       - sensor.multi_soggiorno_relative_humidity
+       - sensor.multi_soggiorno_temperature
+
+
 
 telegram_bot:
   platform: webhooks
@@ -138,6 +155,12 @@ panel_iframe:
   music:
     title: 'Music'
     url: !secret music_url
+  consumi:
+    title: 'Consumi'
+    url: https://scipio.csgalileo.org/grafana/dashboard/db/consumi?orgId=2
+  sensori:
+    title: 'Sensori'
+    url: https://scipio.csgalileo.org/grafana/dashboard/db/sensori?orgId=2
 
 tts:
   - platform: google
