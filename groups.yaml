@@ -3,6 +3,13 @@
 #  entities:
 #    - group.meteo
 
+internet:
+  name: Internet
+  entities:
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    - sensor.speedtest_ping
+
 energia:
   name: Energia
   view: yes
@@ -13,69 +20,60 @@ energia:
 consumi:
   name: Consumi
   entities:
-    - sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_voltage
-    - sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_power_2
-    - sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_energy_2
-    - sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_power_factor_2
-    - sensor.greenwave_powernode_1_port_energy
-    - sensor.greenwave_powernode_1_port_power
-    - sensor.greenwave_powernode_1_port_energy_2
-    - sensor.greenwave_powernode_1_port_power_2
-    - sensor.greenwave_powernode_1_port_energy_3
-    - sensor.greenwave_powernode_1_port_power_3
+    - sensor.lavatrice_power
+    - sensor.lavastoviglie_power
+    - sensor.frigorifero_power
+    - sensor.contatore_power_2
 
 fotovoltaico:
   name: Fotovoltaico
   entities:
-    - sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_voltage
-    - sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_power_3
-    - sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_energy_3
-    - sensor.philio_technology_corporation_phpab01eu_micromodule_energy_meter_power_factor_3
+    - sensor.contatore_power_3
 
 soggiorno:
   name: Soggiorno
   entities:
-    - sensor.aeotec_zw100_multisensor_6_temperature
-    - sensor.aeotec_zw100_multisensor_6_relative_humidity
-    - sensor.aeotec_zw100_multisensor_6_burglar
-    - sensor.aeotec_zw100_multisensor_6_ultraviolet
-    - sensor.aeotec_zw100_multisensor_6_luminance
-    - camera.soggiorno
+    - sensor.multi_soggiorno_alarm_level
+    - sensor.multi_soggiorno_luminance
+    - sensor.multi_soggiorno_temperature
+    - sensor.multi_soggiorno_relative_humidity
+    - sensor.multi_soggiorno_ultraviolet
     - media_player.lg_tv_remote
     - media_player.shield
 
 cucina:
   name: Cucina
   entities:
-    - switch.greenwave_powernode_1_port_switch
-    - switch.greenwave_powernode_1_port_switch_2
+    - switch.frigorifero_switch
+    - switch.lavastoviglie_switch
 
 camere:
   name: Camere
   entities:
-    - sensor.fibaro_system_fgms001_motion_sensor_burglar_2
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature_2
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance_2
+    - sensor.multi_camere_temperature
+    - sensor.multi_camere_alarm_level
+    - sensor.multi_camere_luminance
+    - sensor.multi_camere_seismic_intensity
 
 notte:
   name: Zona Notte
   entities:
-    - switch.greenwave_powernode_1_port_switch_3
+    - switch.lavatrice_switch
 
 esterno:
   name: Esterno
   entities:
-    - sensor.fibaro_system_fgms001_motion_sensor_burglar
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_temperature
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_luminance
-    - sensor.fibaro_system_fgms001zw5_motion_sensor_seismic_intensity
+    - sensor.multi_portico_temperature
+    - sensor.multi_portico_alarm_level
+    - sensor.multi_portico_luminance
+    - sensor.multi_portico_seismic_intensity
 
 allarme:
   name: Allarme
   entities:
     - input_boolean.allarme_armato
     - input_select.sirena
-    - switch.vision_zm1601eu5_battery_operated_siren_switch
+    #- switch.vision_zm1601eu5_battery_operated_siren_switch
     - automation.wifi_arma_automaticamente_allarme
     - input_boolean.allarme_scattato
     - input_boolean.allarme_test
@@ -96,15 +94,9 @@ famiglia:
     - device_tracker.scipio
     - device_tracker.simo
 
-admin:
-  name: Admin
-  view: yes
-  entities:
-    - input_boolean.restart_hass
+#admin:
+#  name: Admin
+#  view: yes
+#  entities:
+#    - input_boolean.restart_hass
 
-internet:
-  name: Internet
-  entities:
-    - sensor.speedtest_download
-    - sensor.speedtest_upload
-    - sensor.speedtest_ping

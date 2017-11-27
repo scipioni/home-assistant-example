@@ -25,8 +25,10 @@ home-assistant real configuration
 * Multisensor - Fibaro FGSM-001
   - reset: press and hold for 5 seconds until yellow, then release and press until red color
   - secure_inclusion: quickle triple press button and after blu led press button
-    - node7
+  - waking up: quickle triple press button
+  - manual: http://manuals.fibaro.com/content/manuals/en/FGMS-001/FGMS-001-EN-T-v2.1.pdf
     - node9
+    - node10
 
 ## camera motion trigger
 

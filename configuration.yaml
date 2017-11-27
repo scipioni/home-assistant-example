@@ -23,11 +23,11 @@ updater:
 
 discovery:
 
-#history:
+history:
 
-#recorder:
-#  purge_interval: 2
-#  purge_keep_days: 2
+recorder:
+  purge_interval: 1
+  purge_keep_days: 2
 
 logbook:
 
@@ -126,6 +126,19 @@ influxdb:
        - sensor.multi_soggiorno_luminance
        - sensor.multi_soggiorno_relative_humidity
        - sensor.multi_soggiorno_temperature
+       - sensor.multi_portico_luminance
+       - sensor.multi_portico_temperature
+       - sensor.multi_portico_seismic_intensity
+       - sensor.multi_camere_luminance
+       - sensor.multi_camere_temperature
+       - sensor.multi_camere_seismic_intensity
+       - sun.sun
+       - sensor.speedtest_download
+       - sensor.speedtest_upload
+       - sensor.speedtest_ping
+       - sensor.yweather_temperature_max
+       - sensor.yweather_temperature_min
+       - sensor.yweather_condition
 
 
 
