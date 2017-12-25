@@ -51,11 +51,11 @@ send_message() {
 download() {
 	URL="$1"
 	OUT="$2"
-	youtube-dl -f m4a \
+	youtube-dl -f bestaudio \
 		--metadata-from-title "%(artist)s - %(title)s" --add-metadata \
 		--download-archive ${ARCHIVE}/.archive.txt \
 		--youtube-skip-dash-manifest \
-		-o "$OUT" "$URL"
+		-o "$OUT" "$URL" --exec "ffmpeg -i {}  -codec:a libmp3lame -qscale:a 0 {}.mp3 && rm {} "
 }
 
 IFS=' ' read -r -a WORDS <<< "$*" # lower and split into array

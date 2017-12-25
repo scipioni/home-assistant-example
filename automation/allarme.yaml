@@ -9,7 +9,7 @@ trigger:
     entity_id: input_boolean.allarme_test
     to: 'on'
   - platform: state
-    entity_id: input_boolean.motion_detected
+    entity_id: input_boolean.motion_c1_00626e611e80
     to: 'on'
 condition:
   condition: state
@@ -21,10 +21,10 @@ action:
   - service: notify.telegram
     data:
       title: ALLARME
-      message: "ALLARME !!!! camera={{states.input_boolean.motion_detected}} volumetrico={{states.sensor.fibaro_system_fgms001_motion_sensor_burglar_2_10.state}}"
+      message: "ALLARME !!!! camera={{states.input_boolean.motion_c1_00626e611e80}} volumetrico={{states.sensor.fibaro_system_fgms001_motion_sensor_burglar_2_10.state}}"
       data:
         photo:
-          - file: /media/photo/latest.jpg
-            caption: Camera C1
+          - file: /media/photo/c1_00626e611e80.jpg
+            caption: soggiorno
   - service: homeassistant.turn_on
     entity_id: switch.vision_zm1601eu5_battery_operated_siren_switch_9_0

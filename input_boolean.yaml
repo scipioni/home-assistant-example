@@ -3,6 +3,11 @@ allarme_armato:
   initial: off
   icon: mdi:alarm
 
+allarme_armato_cancello:
+  name: Allarme ARMATO cancello
+  initial: off
+  icon: mdi:alarm
+
 allarme_scattato:
   name: Allarme scattato
   initial: off
@@ -13,8 +18,13 @@ allarme_test:
   initial: off
   icon: mdi:alarm-plus
 
-motion_detected:
-  name: Motion rilevato
+motion_c1_00626e611e80:
+  name: Motion soggiorno
+  initial: off
+  icon: mdi:run
+
+motion_cancello:
+  name: Motion cancello
   initial: off
   icon: mdi:run
 

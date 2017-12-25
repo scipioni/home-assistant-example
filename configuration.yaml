@@ -93,6 +93,9 @@ weblink:
     - name: Cloud
       url: http://pi.csgalileo.org/cloud/
 
+ffmpeg:
+  ffmpeg_bin: /usr/bin/ffmpeg
+
 camera:
   - platform: foscam
     ip: 192.168.2.14
@@ -107,6 +110,20 @@ camera:
 #    # sito del costruttore: http://www.szsinocam.net/ (non il .com) 
 #    # model: szsinocam SN-IPC-5029CSW
 #    # rtsp url: rtsp://192.168.2.12:554/ucast/11
+#  - platform: onvif
+#    host: 192.168.2.29
+#    username: admin
+#    password: admin
+#    port: 1018
+#  - platform: ffmpeg
+#    input: rtsp://192.168.2.29:554/11
+#    name: cancello
+  - platform: mjpeg
+    name: cancello
+    still_image_url: http://192.168.2.35:8080/RJoxdaN1AkIpD0h8h7NESDhjYKinEA/jpeg/VqgnnhxiIp/pmC4mZ4g5U/s.jpg
+    mjpeg_url: http://192.168.2.35:8080/RJoxdaN1AkIpD0h8h7NESDhjYKinEA/mjpeg/VqgnnhxiIp/pmC4mZ4g5U
+
+
 
 
 #graphite:

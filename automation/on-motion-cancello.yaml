@@ -1,11 +1,11 @@
 hide_entity: true
 trigger:
   platform: state
-  entity_id: input_boolean.motion_c1_00626e611e80
+  entity_id: input_boolean.motion_cancello
   to: 'on'
 action:
   # after two seconds reset motion_detected state
   - delay: '00:00:02'
   - service: input_boolean.turn_off
     data:
-      entity_id: input_boolean.motion_c1_00626e611e80
+      entity_id: input_boolean.motion_cancello

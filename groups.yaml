@@ -10,6 +10,14 @@ internet:
     - sensor.speedtest_upload
     - sensor.speedtest_ping
 
+video:
+  name: Video
+  view: yes
+  entities:
+    - camera.cancello
+    - camera.foscam_camera
+
+
 energia:
   name: Energia
   view: yes
@@ -68,8 +76,8 @@ esterno:
     - sensor.multi_portico_luminance
     - sensor.multi_portico_seismic_intensity
 
-allarme:
-  name: Allarme
+allarme_casa:
+  name: Allarme Casa
   entities:
     - input_boolean.allarme_armato
     - input_select.sirena
@@ -77,7 +85,13 @@ allarme:
     - automation.wifi_arma_automaticamente_allarme
     - input_boolean.allarme_scattato
     - input_boolean.allarme_test
-    - input_boolean.motion_detected
+    - input_boolean.motion_c1_00626e611e80
+
+allarme_cancello:
+  name: Allarme Cancello
+  entities:
+    - input_boolean.allarme_armato_cancello
+    - input_boolean.motion_cancello
 
 meteo:
   name: Meteo

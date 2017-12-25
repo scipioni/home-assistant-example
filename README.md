@@ -30,13 +30,18 @@ home-assistant real configuration
     - node9
     - node10
 
+## camera
+
+1080P POE Bullet IP CAMERA (SV-B01POE-1080P) http://www.sv3c.com/1080P-POE-Bullet-IP-CAMERA-SV-B01POE-1080P-.html
+
+
 ## camera motion trigger
 
 ![Alt text](http://g.gravizo.com/g?
   digraph G {
     aize ="5,5";
     camera -> ftp [label="on motion"]
-    ftp -> incron -> onmotion
+    ftp -> uploadscript -> onmotion
     ftp [label="ftp server"]
     onmotion [label="on-motion.sh"]
     onmotion -> hass [label="REST API"]
@@ -47,6 +52,16 @@ home-assistant real configuration
     user [shape=box,style=filled,color=".4 .5 1.0"]
   }
 )
+
+/etc/default/pure-ftpd-common 
+```
+UPLOADSCRIPT=/home/hass/on-motion.sh
+```
+
+/etc/pure-ftpd/conf/Umask
+```
+113 002
+```
 
 ## camera FTP clean
 
@@ -63,9 +78,9 @@ find ${ARCHIVE} -mtime +${DAYS} -exec rm {} \;
 
 ## camera FTP stop/start 
 
-create file /etc/sudoers.d/pi
+create file /etc/sudoers.d/hass
 ```
-pi  ALL=(ALL:ALL) NOPASSWD: /bin/systemctl * pure-ftpd.service
+hass  ALL=(ALL:ALL) NOPASSWD: /bin/systemctl * pure-ftpd.service
 ```
 
 define ftp_stop and ftp_start in shell_command.yaml

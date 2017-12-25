@@ -1,0 +1,23 @@
+alias: allarme cancello
+initial_state: true
+hide_entity: true
+trigger:
+  - platform: state
+    entity_id: input_boolean.allarme_test
+    to: 'on'
+  - platform: state
+    entity_id: input_boolean.motion_cancello
+    to: 'on'
+condition:
+  condition: state
+  entity_id: input_boolean.allarme_armato_cancello
+  state: 'on'
+action:
+  - service: notify.telegram
+    data:
+      title: ALLARME
+      message: "CANCELLO !!!!"
+      data:
+        photo:
+          - file: /media/photo/cancello.jpg
+            caption: Cancello
