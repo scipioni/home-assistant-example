@@ -6,10 +6,28 @@ simo:
   track: true
   vendor:
 
-scipio:
+#scipio:
+#  hide_if_away: false
+#  mac:
+#  name: scipio
+#  picture: /local/scipio.png
+#  track: true
+#  vendor:
+
+scipio_agm:
   hide_if_away: false
+  icon:
   mac:
   name: scipio
   picture: /local/scipio.png
+  track: true
+  vendor:
+
+simo_xiaomi:
+  hide_if_away: false
+  icon:
+  mac:
+  name: simo
+  picture: /local/simo.png
   track: true
   vendor:

@@ -8,6 +8,8 @@ trigger:
   - platform: state
     entity_id: input_boolean.motion_cancello
     to: 'on'
+  - platform: event
+    event_type: motion_detected_cancello
 condition:
   condition: state
   entity_id: input_boolean.allarme_armato_cancello
@@ -15,7 +17,6 @@ condition:
 action:
   - service: notify.telegram
     data:
-      title: ALLARME
       message: "CANCELLO !!!!"
       data:
         photo:

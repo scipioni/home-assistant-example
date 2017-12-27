@@ -11,6 +11,8 @@ trigger:
   - platform: state
     entity_id: input_boolean.motion_c1_00626e611e80
     to: 'on'
+  - platform: event
+    event_type: motion_detected_c1_00626e611e80
 condition:
   condition: state
   entity_id: input_boolean.allarme_armato
@@ -20,7 +22,6 @@ action:
     entity_id: input_boolean.allarme_scattato
   - service: notify.telegram
     data:
-      title: ALLARME
       message: "ALLARME !!!! camera={{states.input_boolean.motion_c1_00626e611e80}} volumetrico={{states.sensor.fibaro_system_fgms001_motion_sensor_burglar_2_10.state}}"
       data:
         photo:

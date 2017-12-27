@@ -105,8 +105,9 @@ meteo:
 famiglia:
   name: Famiglia
   entities:
-    - device_tracker.scipio
+    - device_tracker.scipio_agm
     - device_tracker.simo
+    - device_tracker.simo_xiaomi
 
 #admin:
 #  name: Admin

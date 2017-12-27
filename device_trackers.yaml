@@ -1,7 +1,8 @@
 - platform: ping
   count: 2
   hosts:
-    scipio: 192.168.2.22
+    #scipio: 192.168.2.22
     simo: 192.168.2.25
+- platform: owntracks_http
 
 

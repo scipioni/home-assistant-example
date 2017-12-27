@@ -1,14 +1,17 @@
 alias: 'telegram bot'
 hide_entity: true
 trigger:
-  platform: event
-  event_type: telegram_command
-  event_data:
-    command: '/ping'
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/ping'
+  - platform: event
+    event_type: motion_detected
 action:
   - service: notify.telegram
-    data:
-      message: "pong"
+    data_template:
+      message: >
+        pong 
   - service: tts.google_say 
     data:
       entity_id: media_player.gstreamer

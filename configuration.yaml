@@ -49,10 +49,10 @@ zwave:
   #device_config: !include zwave_device_config.yaml
 
 logger:
-  default: info
+  default: warning
   #default: debug
-#  logs:
-#    homeassistant.components.device_tracker: debug
+  logs:
+    homeassistant.components.device_tracker: debug
 #    homeassistant.components.device_tracker.mqtt: debug
 #    custom_components.telegram_webhooks: debug
 #    custom_components.grafana_webhooks: debug
