@@ -21,7 +21,7 @@ http:
 
 updater:
 
-discovery:
+#discovery:
 
 history:
 
@@ -58,6 +58,7 @@ logger:
 #    custom_components.grafana_webhooks: debug
 #    homeassistant.components.http: debug
 #    homeassistant.components.shell_command: debug
+    homeassistant.components.tradfri: debug
 
 device_tracker: !include device_trackers.yaml
 
@@ -225,3 +226,7 @@ shopping_list:
 map:
 
 python_script:
+
+tradfri:
+  host: 192.168.2.30
+  
