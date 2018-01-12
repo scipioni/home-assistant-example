@@ -8,9 +8,6 @@ trigger:
   - platform: state
     entity_id: input_boolean.allarme_test
     to: 'on'
-  - platform: state
-    entity_id: input_boolean.motion_c1_00626e611e80
-    to: 'on'
   - platform: event
     event_type: motion_detected_c1_00626e611e80
 condition:

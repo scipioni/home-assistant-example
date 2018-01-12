@@ -1,5 +1,5 @@
-youtube_play: bash /home/hass/youtube-play "{{ text }}"
-youtube_test: /home/hass/youtube-play "https://www.youtube.com/watch?v=c8qrwON1-zE"
+youtube_play: bash /home/hass/.homeassistant/youtube-play "{{ text }}"
+youtube_test: /home/hass/.homeassistant/youtube-play "https://www.youtube.com/watch?v=c8qrwON1-zE"
 #ftp_stop: sudo systemctl stop pure-ftpd.service
 ftp_stop: echo ""
 ftp_start: sudo systemctl start pure-ftpd.service

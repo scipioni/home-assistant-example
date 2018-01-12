@@ -8,3 +8,4 @@ secrets.yaml
 __pycache__
 /home-assistant.git
 .uuid
+.tradfri_psk.conf

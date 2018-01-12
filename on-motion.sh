@@ -4,7 +4,7 @@
 
 # with slash at the end
 CHROOT=/media/photo/
-SECRETS=/home/hass/secrets.yaml
+SECRETS=/home/hass/.homeassistant/secrets.yaml
 
 ##########################################
 
@@ -29,7 +29,7 @@ INPUT=${INPUT,,}
 [ -f $FILENAME ] && ln -sf $FILENAME ${CHROOT}${INPUT}.jpg
 
 # notify hass
-PASS=$(grep http_password ${SECRETS} | awk '{ print $2 }')
+PASS=$(egrep "^http_password" ${SECRETS} | awk '{ print $2 }')
 #curl -X POST -H "x-ha-access: $PASS" -H "Content-Type: application/json" -d '{"state": "on"}' \
 #  http://localhost:8123/api/states/input_boolean.motion_${INPUT}
 

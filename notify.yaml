@@ -11,5 +11,5 @@
 - name: grafana
   platform: command_line
   command: "/home/hass/grafana.sh"
-
+  
 

@@ -121,8 +121,8 @@ camera:
 #    name: cancello
   - platform: mjpeg
     name: cancello
-    still_image_url: http://192.168.2.35:8080/RJoxdaN1AkIpD0h8h7NESDhjYKinEA/jpeg/VqgnnhxiIp/pmC4mZ4g5U/s.jpg
-    mjpeg_url: http://192.168.2.35:8080/RJoxdaN1AkIpD0h8h7NESDhjYKinEA/mjpeg/VqgnnhxiIp/pmC4mZ4g5U
+    still_image_url: http://192.168.2.35:8080/XFh4bUVexZKzyTKSoIcClXlpi3HeX5/jpeg/8Pkk5cE2xY/LIBm503cxy/s.jpg
+    mjpeg_url: http://192.168.2.35:8080/XFh4bUVexZKzyTKSoIcClXlpi3HeX5/mjpeg/8Pkk5cE2xY/LIBm503cxy
 
 
 
@@ -214,6 +214,11 @@ switch:
         friendly_name: "LG Tv Mute"
         command_on: 'JgBgAAABKpITEhQRFDUTEhQRFBETEhQRFDUSOBEUFDYROBM3ETkTNhM3ERQUERQ1ExIUERQRFBEUERM2FDYRFBQ2EzYUNhQ2EwAFJwABKkgTAAxZAAEpSRQADFkAASlJFAANBQAAAAAAAAAA'
         #command_off: 'JgBgAAABKpITEhQRFDUTEhQRFBETEhQRFDUSOBEUFDYROBM3ETkTNhM3ERQUERQ1ExIUERQRFBEUERM2FDYRFBQ2EzYUNhQ2EwAFJwABKkgTAAxZAAEpSRQADFkAASlJFAANBQAAAAAAAAAA'
+  - platform: command_line
+    switches:
+      soggiorno_motion:
+        command_on: 'curl -k "http://192.168.2.35:8080/XFh4bUVexZKzyTKSoIcClXlpi3HeX5/monitor/8Pkk5cE2xY/njnn5SW71D/start"'
+        command_off: 'curl -k "http://192.168.2.35:8080/XFh4bUVexZKzyTKSoIcClXlpi3HeX5/monitor/8Pkk5cE2xY/njnn5SW71D/stop"'
 
 
 conversation:
