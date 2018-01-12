@@ -37,6 +37,7 @@ home-assistant real configuration
 
 ## camera motion trigger
 
+```
 ![Alt text](http://g.gravizo.com/g?
   digraph G {
     aize ="5,5";
@@ -52,6 +53,7 @@ home-assistant real configuration
     user [shape=box,style=filled,color=".4 .5 1.0"]
   }
 )
+```
 
 /etc/default/pure-ftpd-common 
 ```
@@ -62,6 +64,13 @@ UPLOADSCRIPT=/home/hass/on-motion.sh
 ```
 113 002
 ```
+
+/etc/pure-ftpd/conf/CallUploadScript
+```
+yes
+```
+
+
 
 ## camera FTP clean
 
