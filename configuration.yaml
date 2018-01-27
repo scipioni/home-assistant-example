@@ -82,6 +82,8 @@ shell_command: !include shell_command.yaml
 
 script: !include_dir_named scripts
 
+switch: !include switch.yaml
+
 
 ###########################################
 
@@ -200,25 +202,6 @@ tts:
     language: 'en-US'
     #language: 'it_I'
 
-switch:
-  - platform: broadlink
-    host: 192.168.2.28
-    mac: '34:ea:34:f4:26:a1'
-    timeout: 15
-    switches:
-      tv_lg_power:
-        friendly_name: "LG Tv Power"
-        command_on: 'JgBYAAABKZITEhQRFDYTEhQRExEUERQRFDYSNxMSFDYUNhQ1EzcTNxMSFBETERQ2FBEUERQRFBETNhQ2EzcUEBQ2EzcRORM2EQAFKgABKUkUAAxZAAEqSBQADQU='
-        command_off: 'JgBYAAABKZITEhQRFDYTEhQRExEUERQRFDYSNxMSFDYUNhQ1EzcTNxMSFBETERQ2FBEUERQRFBETNhQ2EzcUEBQ2EzcRORM2EQAFKgABKUkUAAxZAAEqSBQADQU='
-      tv_lg_mute:
-        friendly_name: "LG Tv Mute"
-        command_on: 'JgBgAAABKpITEhQRFDUTEhQRFBETEhQRFDUSOBEUFDYROBM3ETkTNhM3ERQUERQ1ExIUERQRFBEUERM2FDYRFBQ2EzYUNhQ2EwAFJwABKkgTAAxZAAEpSRQADFkAASlJFAANBQAAAAAAAAAA'
-        #command_off: 'JgBgAAABKpITEhQRFDUTEhQRFBETEhQRFDUSOBEUFDYROBM3ETkTNhM3ERQUERQ1ExIUERQRFBEUERM2FDYRFBQ2EzYUNhQ2EwAFJwABKkgTAAxZAAEpSRQADFkAASlJFAANBQAAAAAAAAAA'
-  - platform: command_line
-    switches:
-      soggiorno_motion:
-        command_on: 'curl -k "http://192.168.2.35:8080/XFh4bUVexZKzyTKSoIcClXlpi3HeX5/monitor/8Pkk5cE2xY/njnn5SW71D/start"'
-        command_off: 'curl -k "http://192.168.2.35:8080/XFh4bUVexZKzyTKSoIcClXlpi3HeX5/monitor/8Pkk5cE2xY/njnn5SW71D/stop"'
 
 
 conversation:
