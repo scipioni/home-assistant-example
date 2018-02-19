@@ -22,3 +22,8 @@ action:
         photo:
           - file: /media/photo/cancello.jpg
             caption: Cancello
+  - service: tts.google_say
+    entity_id: media_player.main_google
+    data_template:
+      message: >
+        there is someone at the gate
