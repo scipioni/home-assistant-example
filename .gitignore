@@ -9,3 +9,5 @@ __pycache__
 /home-assistant.git
 .uuid
 .tradfri_psk.conf
+google_assistant.yaml
+__pycache__

@@ -84,6 +84,8 @@ script: !include_dir_named scripts
 
 switch: !include switch.yaml
 
+google_assistant: !include google_assistant.yaml
+
 
 ###########################################
 
