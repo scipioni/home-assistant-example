@@ -15,9 +15,18 @@ config:
 frontend:
 
 http:
+  # see https://www.home-assistant.io/components/http/
   api_password: !secret http_password
-  use_x_forwarded_for: true
   base_url: !secret base_url
+  cors_allowed_origins:
+    - https://google.com
+    - https://www.home-assistant.io
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 127.0.0.1
+  trusted_networks:
+    - 127.0.0.1
+    - 192.168.2.0/24
 
 updater:
 
@@ -125,8 +134,8 @@ camera:
 #    name: cancello
   - platform: mjpeg
     name: cancello
-    still_image_url: http://192.168.2.35:8080/XFh4bUVexZKzyTKSoIcClXlpi3HeX5/jpeg/8Pkk5cE2xY/LIBm503cxy/s.jpg
-    mjpeg_url: http://192.168.2.35:8080/XFh4bUVexZKzyTKSoIcClXlpi3HeX5/mjpeg/8Pkk5cE2xY/LIBm503cxy
+    still_image_url: http://192.168.2.35:8080/b9en9X80sUF9vvWw4AMvrrphdC2ATG/jpeg/64JpGe9I8r/XJhXxDIcGQ/s.jpg
+    mjpeg_url: http://192.168.2.35:8080/b9en9X80sUF9vvWw4AMvrrphdC2ATG/mjpeg/64JpGe9I8r/XJhXxDIcGQ
 
 
 
@@ -165,7 +174,8 @@ influxdb:
 
 
 telegram_bot:
-  platform: webhooks
+  #platform: webhooks
+  platform: polling
   api_key: !secret telegram_token
   trusted_networks:
     - 149.154.167.197/32
@@ -177,6 +187,7 @@ telegram_bot:
   allowed_chat_ids:
     - 73496590
     - 84015820
+    - 609301127
     #- -209766105
 
 
@@ -184,7 +195,7 @@ telegram_bot:
 #  api_key: !secret microsoft_api
 
 
-grafana_webhooks:
+#grafana_webhooks:
 
 panel_iframe:
   music:

@@ -1,4 +1,4 @@
-alias: 'notifica allarme armato'
+alias: 'notifica allarme disarmato'
 hide_entity: true
 trigger:
   platform: state

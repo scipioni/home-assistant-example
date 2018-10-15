@@ -2,10 +2,14 @@
   platform: telegram
   api_key: !secret telegram_token
   chat_id: !secret telegram_chat
-- name: telegram_simo
+#- name: telegram_simo
+#  platform: telegram
+#  api_key: !secret telegram_token
+#  chat_id: !secret telegram_chat_simo
+- name: telegram_lorenzo
   platform: telegram
   api_key: !secret telegram_token
-  chat_id: !secret telegram_chat_simo
+  chat_id: !secret telegram_chat_lorenzo
 - name: syslog
   platform: syslog
 - name: grafana
