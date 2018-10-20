@@ -34,6 +34,8 @@ home-assistant real configuration
 
 1080P POE Bullet IP CAMERA (SV-B01POE-1080P) http://www.sv3c.com/1080P-POE-Bullet-IP-CAMERA-SV-B01POE-1080P-.html
 
+firmware download from http://www.sv3c.com/POE-Camera-A-series-.html MC200E2
+
 
 ## camera motion trigger
 
